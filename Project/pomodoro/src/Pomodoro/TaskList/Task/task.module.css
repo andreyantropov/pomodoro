@@ -1,0 +1,29 @@
+.taskComponent {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--grey);
+    border-bottom: 1px solid var(--grey);
+}
+
+.taskContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.number {
+    padding: 0.4em 0 0 0.7em;
+    border: 1px solid var(--grey);
+    border-radius: 50%;
+    width:2em;
+    height:2em;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 17px;
+}
+
+.task {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 17px;
+}
