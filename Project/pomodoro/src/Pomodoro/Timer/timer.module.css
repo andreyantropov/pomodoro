@@ -1,0 +1,76 @@
+.timerComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 70px;
+    padding: 10px 40px;
+    width: 100%;
+    background-color: var(--grey);
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 17px;
+    color: var(--white);
+}
+
+.tomato {
+    font-size: 16px;
+    line-height: 17px;
+    color: var(--white);
+}
+
+.timer {
+    margin-bottom: 64px;
+    font-size: 150px;
+    font-weight: 200;
+}
+
+.taskContainer {
+    margin-bottom: 32px;
+}
+
+.number {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 17px;
+    color: var(--grey-light);
+}
+
+.task {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 17px;
+}
+
+.btnContainer {
+    display: flex;
+    gap: 25px;
+}
+
+.startBtn {
+    padding: 15px 50px;
+    border: 2px solid var(--secondary);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17px;
+    color: var(--white);
+    background-color: var(--secondary);
+}
+
+.stopBtn {
+    padding: 15px 50px;
+    border: 2px solid currentColor;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17px;
+    color: var(--grey);
+}

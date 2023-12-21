@@ -4,7 +4,7 @@
     max-width: 1320px;
 }
 
-.wpapper {
+.wrapper {
     display: flex;
     gap: 15px;
 }

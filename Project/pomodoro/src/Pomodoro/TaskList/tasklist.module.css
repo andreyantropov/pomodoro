@@ -15,6 +15,7 @@
 .addBtn {
     margin-bottom: 25px;
     padding: 15px 50px;
+    border: 2px solid var(--secondary);
     font-size: 16px;
     font-weight: 500;
     line-height: 17px;
