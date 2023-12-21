@@ -6,7 +6,8 @@
   --secondary-dark: #899441;
   --black: #333;
   --grey: #c4c4c4;
-  --grey-light: #999; 
+  --grey-light: #999;
+  --white: #fff;
 }
  
 body {

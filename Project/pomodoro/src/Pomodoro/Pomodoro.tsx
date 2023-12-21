@@ -9,7 +9,7 @@ export function Pomodoro() {
     <section>
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <div>
+          <div className={styles.tasks}>
             <Instruction />
             <TaskList />
           </div>

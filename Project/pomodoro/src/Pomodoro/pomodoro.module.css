@@ -8,3 +8,11 @@
     display: flex;
     gap: 15px;
 }
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    max-width: 500px;
+    width: 100%;
+}
