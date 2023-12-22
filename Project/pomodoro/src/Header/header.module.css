@@ -16,7 +16,12 @@
     padding: 25px 0;
 }
 
-.statistics {
+.navigationList {
+    display: flex;
+    gap: 15px;
+}
+
+.navigationLink {
     display: flex;
     align-items: end;
     gap: 5px;
