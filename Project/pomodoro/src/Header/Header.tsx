@@ -6,7 +6,9 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <img src="/img/logo.svg" alt="Логотип Pomodoro" />
+          <a href="">
+            <img src="/img/logo.svg" alt="Логотип Pomodoro" />
+          </a>
 
           <nav>
             <ul className={styles.navigationList}>
