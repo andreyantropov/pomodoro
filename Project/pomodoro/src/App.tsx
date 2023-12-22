@@ -7,18 +7,16 @@ import { PageNotFound } from './PageNotFound';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
       <main>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Navigate replace to="/tasks" />} />
-            <Route path="/tasks" element={<Pomodoro />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Navigate replace to="/tasks" />} />
+          <Route path="/tasks" element={<Pomodoro />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
       </main>
-    </>
+    </BrowserRouter>
   );
 }
 
