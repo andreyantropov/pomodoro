@@ -2,18 +2,18 @@ import React from 'react';
 import styles from './menuitemlist.module.css';
 import { MenuItem } from './MenuItem';
 
-interface IItem {
+interface Item {
   id: string;
   icon: string;
   text: string;
   OnClick: () => void;
 }
 
-interface IMenuItemListProps {
-  items: IItem[];
+interface MenuItemListProps {
+  items: Item[];
 }
 
-export function MenuItemList({ items }: IMenuItemListProps) {
+export function MenuItemList({ items }: MenuItemListProps) {
   return (
     <ul className={styles.menuItemsList}>
       { items.map(({ id, icon, text, OnClick }) => (

@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './menuitem.module.css';
 
-interface IItem {
+interface Item {
   id: string;
   icon: string;
   text: string;
   OnClick: () => void;
 }
 
-export function MenuItem({ id, icon, text, OnClick }: IItem) {
+export function MenuItem({ id, icon, text, OnClick }: Item) {
   return (
     <React.Fragment key={id}>
       <li className={styles.item} onClick={OnClick}>
