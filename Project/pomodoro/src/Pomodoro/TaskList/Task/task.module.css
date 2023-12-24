@@ -1,6 +1,7 @@
 .taskComponent {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-top: 1px solid var(--grey);
     border-bottom: 1px solid var(--grey);
 }
@@ -26,4 +27,16 @@
     font-size: 16px;
     font-weight: 300;
     line-height: 17px;
+}
+
+.menu {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 15px;
+    border-radius: 3px;
+    background-color: var(--white);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
