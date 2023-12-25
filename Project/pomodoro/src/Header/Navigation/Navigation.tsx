@@ -22,8 +22,9 @@ export function Navigation() {
     <nav>
       <ul className={styles.navigationList}>
         { 
-          navLinks.map(({ icon, text, url }) => (
-            <NavLink 
+          navLinks.map(({ id, icon, text, url }) => (
+            <NavLink
+              key={id}
               icon={icon}
               text={text}
               url={url}
