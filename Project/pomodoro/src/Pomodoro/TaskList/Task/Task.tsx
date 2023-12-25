@@ -2,12 +2,17 @@ import React from 'react';
 import styles from './task.module.css';
 import { Menu } from './Menu';
 
-export function Task() {
+interface TaskProps {
+  id: string;
+  task: string;
+}
+
+export function Task({ task }: TaskProps) {
   return (
     <li className={styles.taskComponent}>
       <div className={styles.taskContainer}>
         <span className={styles.number}>1</span>
-        <p className={styles.task}>Сверстать сайт</p>
+        <span className={styles.task}>{task}</span>
       </div>
       <Menu />
     </li>
