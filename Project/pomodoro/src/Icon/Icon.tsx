@@ -8,13 +8,14 @@ import { MenuIcon } from './MenuIcon';
 import { PlusIcon } from './PlusIcon';
 import { ZoomInIcon } from './ZoomInIcon';
 import { ZoomOutIcon } from './ZoomOutIcon';
+import { Icons } from '../enums/Icons';
 
 interface IconProps {
-  name: string;
+  name: Icons;
   size?: number;
 }
 
-export function Icon({ name, size = 16 }: IconProps) {
+export function Icon({ name, size }: IconProps) {
   const renderSwitch = (param: string) => {
     switch(param) {
       case Icons.Equalizer:

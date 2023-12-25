@@ -1,4 +1,4 @@
-enum Icons {
+export enum Icons {
     Equalizer = 'equalizer',
     Settings = 'settings',
     Edit = 'edit',

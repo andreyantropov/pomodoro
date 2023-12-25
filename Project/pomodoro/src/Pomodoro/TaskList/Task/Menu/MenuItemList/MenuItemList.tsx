@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './menuitemlist.module.css';
 import { MenuItem } from './MenuItem';
+import { Icons } from '../../../../../enums/Icons';
 
 interface Item {
   id: string;
-  icon: string;
+  icon: Icons;
   text: string;
   OnClick: () => void;
 }

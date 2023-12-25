@@ -3,25 +3,27 @@ import styles from './menu.module.css';
 import { DropDown } from '../../../../DropDown';
 import { generateId } from '../../../../utils/generateRandomIndex';
 import { MenuItemList } from './MenuItemList';
+import { Icon } from '../../../../Icon';
+import { Icons } from '../../../../enums/Icons';
 
 const menuItems = [
   {
-    icon: '',
+    icon: Icons.ZoomIn,
     text: 'Увеличить',
     OnClick: () => console.log(''),
   },
   {
-    icon: '',
+    icon: Icons.ZoomOut,
     text: 'Уменьшить',
     OnClick: () => console.log(''),
   },
   {
-    icon: '',
+    icon: Icons.Edit,
     text: 'Редактировать',
     OnClick: () => console.log(''),
   },
   {
-    icon: '',
+    icon: Icons.Delete,
     text: 'Удалить',
     OnClick: () => console.log(''),
   },
@@ -33,11 +35,7 @@ export function Menu() {
       <DropDown
         button={
           <button>
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="6" viewBox="0 0 26 6" fill="none">
-              <circle cx="3" cy="3" r="3" fill="#C4C4C4"/>
-              <circle cx="13" cy="3" r="3" fill="#C4C4C4"/>
-              <circle cx="23" cy="3" r="3" fill="#C4C4C4"/>
-            </svg>
+            <Icon name={Icons.Menu} />
           </button>
         }
       >
