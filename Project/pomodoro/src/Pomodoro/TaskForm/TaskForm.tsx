@@ -1,30 +1,16 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import styles from './taskform.module.css';
-import { useStoreon } from 'storeon/react';
-import { Events, State } from '../../store/store';
-import { nanoid } from 'nanoid';
 
 interface TaskFormProps {
-  text?: string;
+  value: string;
+  OnChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  OnSubmit: (e: FormEvent) => void;
 }
 
-export function TaskForm({ text="" }: TaskFormProps) {
-  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
-  const [task, setTask] = useState(text);
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setTask(e.target.value);
-  }
-
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    dispatch('tasks/add', { id: nanoid(), task: task, });
-    setTask('');
-  }
-
+export function TaskForm({ value, OnChange, OnSubmit }: TaskFormProps) {
   return (
-    <form className={styles.form} action="" onSubmit={handleSubmit}>
-      <input className={styles.input} type="text" placeholder="Название задачи" value={task} onChange={handleChange} />
+    <form className={styles.form} action="" onSubmit={OnSubmit}>
+      <input className={styles.input} type="text" placeholder="Название задачи" value={value} onChange={OnChange} />
       <button className={styles.addBtn} type="submit">Добавить</button>
     </form>
   );
