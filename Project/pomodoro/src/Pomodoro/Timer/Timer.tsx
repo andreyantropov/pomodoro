@@ -18,7 +18,7 @@ export function Timer() {
 
       <div className={styles.btnContainer}>
         <button className={styles.startBtn}>Старт</button>
-        <button className={styles.stopBtn}>Стоп</button>
+        <button className={styles.stopBtn} disabled>Стоп</button>
       </div>
     </div>
   );

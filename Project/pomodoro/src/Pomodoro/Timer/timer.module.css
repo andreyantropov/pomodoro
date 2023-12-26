@@ -94,26 +94,27 @@
     transition: border 0.3s, color 0.3s, background-color 0.3s;
 }
 
-.stopBtn:focus {
+.stopBtn:disabled {
+    border: 2px solid var(--grey);
+    color: var(--grey);
+    cursor: default;
+}
+
+.stopBtn:focus:enabled {
     border: 2px solid var(--primary-dark);
     color: var(--primary-dark);
 }
 
 @media (any-hover: hover) {
-    .stopBtn:hover {
+    .stopBtn:hover:enabled {
         border: 2px solid var(--primary);
         color: var(--white);
         background-color: var(--primary);
     }
 }
 
-.stopBtn:active {
+.stopBtn:active:enabled {
     border: 2px solid var(--primary-dark);
     color: var(--white);
     background-color: var(--primary-dark);
-}
-
-.stopBtn:disabled {
-    border: 2px solid var(--grey);
-    color: var(--grey);
 }
