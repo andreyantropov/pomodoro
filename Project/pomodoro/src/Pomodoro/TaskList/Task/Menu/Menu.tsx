@@ -5,31 +5,39 @@ import { generateId } from '../../../../utils/generateRandomIndex';
 import { MenuItemList } from './MenuItemList';
 import { Icon } from '../../../../Icon';
 import { Icons } from '../../../../enums/Icons';
+import { useStoreon } from 'storeon/react';
+import { State, Events } from '../../../../store/store';
 
-const menuItems = [
-  {
-    icon: Icons.ZoomIn,
-    text: 'Увеличить',
-    OnClick: () => console.log(''),
-  },
-  {
-    icon: Icons.ZoomOut,
-    text: 'Уменьшить',
-    OnClick: () => console.log(''),
-  },
-  {
-    icon: Icons.Edit,
-    text: 'Редактировать',
-    OnClick: () => console.log(''),
-  },
-  {
-    icon: Icons.Delete,
-    text: 'Удалить',
-    OnClick: () => console.log(''),
-  },
-].map(generateId);
+interface MenuProps {
+  id: string;
+}
 
-export function Menu() {
+export function Menu({ id }: MenuProps) {
+  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
+
+  const menuItems = [
+    {
+      icon: Icons.ZoomIn,
+      text: 'Увеличить',
+      OnClick: () => console.log(''),
+    },
+    {
+      icon: Icons.ZoomOut,
+      text: 'Уменьшить',
+      OnClick: () => console.log(''),
+    },
+    {
+      icon: Icons.Edit,
+      text: 'Редактировать',
+      OnClick: () => console.log(''),
+    },
+    {
+      icon: Icons.Delete,
+      text: 'Удалить',
+      OnClick: () => dispatch('tasks/delete', id),
+    },
+  ].map(generateId);
+
   return (
     <div className={styles.menuComponent}>
       <DropDown

@@ -6,6 +6,7 @@ export interface State {
 
 export interface Events {
     'tasks/add': Task;
+    'tasks/delete': string;
 }
 
 interface Task {
@@ -15,8 +16,11 @@ interface Task {
 
 const tasksModule: StoreonModule<State, Events> = store => {
     store.on('@init', () => ({ tasks: [] }));
-    store.on('tasks/add', ({ tasks }, task) => {
-        return { tasks: tasks.concat([task]) }
+    store.on('tasks/add', ({ tasks }, newTask) => {
+        return { tasks: tasks.concat([newTask]) }
+    });
+    store.on('tasks/delete', ({ tasks }, id) => {
+        return { tasks: tasks.filter((task) => task.id !== id) };
     });
 }
   
