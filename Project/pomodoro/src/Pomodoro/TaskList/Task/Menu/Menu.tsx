@@ -10,9 +10,10 @@ import { State, Events } from '../../../../store/store';
 
 interface MenuProps {
   id: string;
+  text: string;
 }
 
-export function Menu({ id }: MenuProps) {
+export function Menu({ id, text, }: MenuProps) {
   const { dispatch, tasks } = useStoreon<State, Events>('tasks');
 
   const menuItems = [
@@ -34,7 +35,7 @@ export function Menu({ id }: MenuProps) {
     {
       icon: Icons.Delete,
       text: 'Удалить',
-      OnClick: () => dispatch('tasks/delete', id),
+      OnClick: () => dispatch('tasks/delete', { id, text, }),
     },
   ].map(generateId);
 

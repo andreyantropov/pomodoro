@@ -6,21 +6,26 @@ export interface State {
 
 export interface Events {
     'tasks/add': Task;
-    'tasks/delete': string;
+    'tasks/update': Task;
+    'tasks/delete': Task;
 }
 
 interface Task {
     id: string;
-    task: string;
+    text: string;
 }
 
 const tasksModule: StoreonModule<State, Events> = store => {
-    store.on('@init', () => ({ tasks: [] }));
+    store.on('@init', () => ({ tasks: []}));
+
     store.on('tasks/add', ({ tasks }, newTask) => {
         return { tasks: tasks.concat([newTask]) }
     });
-    store.on('tasks/delete', ({ tasks }, id) => {
-        return { tasks: tasks.filter((task) => task.id !== id) };
+    store.on('tasks/update', ({ tasks }, updTask) => {
+        return { tasks: tasks.map((task) => task.id === updTask.id ? updTask : task) };
+    });
+    store.on('tasks/delete', ({ tasks }, delTask) => {
+        return { tasks: tasks.filter((task) => task.id !== delTask.id) };
     });
 }
   

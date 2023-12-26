@@ -4,17 +4,17 @@ import { Menu } from './Menu';
 
 interface TaskProps {
   id: string;
-  task: string;
+  text: string;
 }
 
-export function Task({ id, task }: TaskProps) {
+export function Task({ id, text }: TaskProps) {
   return (
     <li className={styles.taskComponent}>
       <div className={styles.taskContainer}>
         <span className={styles.number}>1</span>
-        <span className={styles.task}>{task}</span>
+        <span className={styles.task}>{text}</span>
       </div>
-      <Menu id={id} />
+      <Menu id={id} text={text} />
     </li>
   );
 }

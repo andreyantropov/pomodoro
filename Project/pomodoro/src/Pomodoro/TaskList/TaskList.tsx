@@ -9,11 +9,11 @@ export function TaskList() {
 
   return (
       <ul className={styles.list}>
-        { tasks.map(({ id, task }) => (
+        { tasks.map(({ id, text }) => (
             <Task
               key={id}
               id={id}
-              task={task}
+              text={text}
             />
           ))
         }

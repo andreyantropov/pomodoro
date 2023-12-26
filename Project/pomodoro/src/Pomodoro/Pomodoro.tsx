@@ -3,9 +3,9 @@ import styles from './pomodoro.module.css';
 import { Timer } from './Timer';
 import { Instruction } from './Instruction';
 import { TaskList } from './TaskList';
-import { TaskFormContainer } from './TaskFormContainer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../store/store';
+import { TaskFormContainer } from './TaskFormContainer/TaskFormContainer';
 
 export function Pomodoro() {
   const { dispatch, tasks } = useStoreon<State, Events>('tasks');
