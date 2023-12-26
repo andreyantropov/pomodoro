@@ -12,8 +12,8 @@ interface NavLinkProps {
 
 export function NavLink({ icon, text, url }: NavLinkProps) {
   return (
-    <li>
-      <Link to={url} className={styles.navigationLink} >
+    <li className={styles.navItem}>
+      <Link to={url} className={styles.navLink} >
         <Icon name={icon} />
         {text}
       </Link>

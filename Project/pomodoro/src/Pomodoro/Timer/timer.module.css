@@ -101,8 +101,8 @@
 }
 
 .stopBtn:focus:enabled {
-    border: 2px solid var(--primary-dark);
-    color: var(--primary-dark);
+    border: 2px solid var(--primary-darker);
+    color: var(--primary-darker);
 }
 
 @media (any-hover: hover) {
@@ -114,7 +114,7 @@
 }
 
 .stopBtn:active:enabled {
-    border: 2px solid var(--primary-dark);
+    border: 2px solid var(--primary-darker);
     color: var(--white);
-    background-color: var(--primary-dark);
+    background-color: var(--primary-darker);
 }

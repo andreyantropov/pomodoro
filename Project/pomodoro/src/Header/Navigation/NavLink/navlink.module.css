@@ -1,7 +1,30 @@
-.navigationLink {
+.navLink {
     display: flex;
     align-items: end;
     gap: 5px;
     font-size: 16px;
     color: var(--primary);
+    transition: color 0.3s;
+}
+
+.navItem:focus {
+    outline: 1px solid var(--primary);
+}
+
+@media (any-hover: hover) {
+    .navItem:hover {
+        outline: none;
+    }
+
+    .navItem:hover .navLink {
+        color: var(--primary-darker);
+    }
+}
+
+.navItem:active {
+    outline: none;
+}
+
+.navItem:active .navLink {
+    color: var(--primary-dark);
 }
