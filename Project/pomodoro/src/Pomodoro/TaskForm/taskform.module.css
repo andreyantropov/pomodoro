@@ -27,3 +27,20 @@
     color: var(--white);
     background-color: var(--secondary);
 }
+
+.addBtn:focus {
+    border: 2px solid var(--secondary-light);
+    background-color: var(--secondary-light);
+}
+
+@media (any-hover: hover) {
+    .addBtn:hover {
+        border: 2px solid var(--secondary-darker);
+        background-color: var(--secondary-darker);
+    }
+}
+
+.addBtn:active {
+    border: 2px solid var(--secondary-dark);
+    background-color: var(--secondary-dark);
+}
