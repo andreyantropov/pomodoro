@@ -31,12 +31,12 @@ export function Menu({ id, text, isEdit, }: MenuProps) {
     {
       icon: Icons.Edit,
       text: 'Редактировать',
-      OnClick: () => dispatch('tasks/edit', { id, text, isEdit, }),
+      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: true, }),
     },
     {
       icon: Icons.Delete,
       text: 'Удалить',
-      OnClick: () => dispatch('tasks/delete', { id, text, isEdit, }),
+      OnClick: () => dispatch('tasks/delete', { id: id, text: text, isEdit, }),
     },
   ].map(generateId);
 

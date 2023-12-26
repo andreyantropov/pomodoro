@@ -23,9 +23,6 @@ const tasksModule: StoreonModule<State, Events> = store => {
     store.on('tasks/add', ({ tasks }, newTask) => {
         return { tasks: tasks.concat([newTask]) }
     });
-    store.on('tasks/edit', ({ tasks }, editTask) => {
-        return { tasks: tasks.map((task) => task.id === editTask.id ? { ...task, isEdit: true, } : task) }
-    });
     store.on('tasks/update', ({ tasks }, updTask) => {
         return { tasks: tasks.map((task) => task.id === updTask.id ? updTask : task) };
     });

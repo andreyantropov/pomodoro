@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, KeyboardEvent, useState } from 'react';
 import styles from './task.module.css';
 import { Menu } from './Menu';
 import { useStoreon } from 'storeon/react';
@@ -18,6 +18,13 @@ export function Task({ id, text, isEdit }: TaskProps) {
     setTask(e.target.value);
   }
 
+  function handleKeyDown(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      setTask(text);
+      dispatch('tasks/update', { id: id, text: task, isEdit: false, });
+    }
+  }
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     dispatch('tasks/update', { id: id, text: task, isEdit: false, });
@@ -28,7 +35,7 @@ export function Task({ id, text, isEdit }: TaskProps) {
       <div className={styles.taskContainer}>
         <span className={styles.number}>1</span>
         <form action="" onSubmit={handleSubmit}>
-          <input className={styles.input} type="text" value={task} minLength={3} maxLength={30} onChange={handleChange} disabled={!isEdit} required />
+          <input className={styles.input} type="text" value={task} minLength={3} maxLength={30} onChange={handleChange} onKeyDown={handleKeyDown} disabled={!isEdit} required />
         </form>
       </div>
       <Menu id={id} text={text} isEdit={isEdit} />
