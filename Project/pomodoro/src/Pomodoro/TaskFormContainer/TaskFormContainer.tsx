@@ -14,7 +14,7 @@ export function TaskFormContainer() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('tasks/add', { id: nanoid(), task: value, });
+    dispatch('tasks/add', { id: nanoid(), task: value.trim(), });
     setValue('');
   }
   return (

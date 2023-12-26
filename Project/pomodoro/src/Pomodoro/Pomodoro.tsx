@@ -4,8 +4,12 @@ import { Timer } from './Timer';
 import { Instruction } from './Instruction';
 import { TaskList } from './TaskList';
 import { TaskFormContainer } from './TaskFormContainer';
+import { useStoreon } from 'storeon/react';
+import { State, Events } from '../store/store';
 
 export function Pomodoro() {
+  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
+  
   return (
     <section>
       <div className={styles.container}>
@@ -14,7 +18,7 @@ export function Pomodoro() {
             <Instruction />
             <TaskFormContainer />
             <TaskList />
-            <span className={styles.totalTime}>50 мин</span>
+            <span className={styles.totalTime}>{ tasks.length * 25 } мин</span>
           </div>
           <Timer />
         </div>
