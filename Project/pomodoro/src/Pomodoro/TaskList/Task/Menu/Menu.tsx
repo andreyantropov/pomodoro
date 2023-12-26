@@ -11,10 +11,11 @@ import { State, Events } from '../../../../store/store';
 interface MenuProps {
   id: string;
   text: string;
+  isEdit: boolean;
 }
 
-export function Menu({ id, text, }: MenuProps) {
-  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
+export function Menu({ id, text, isEdit, }: MenuProps) {
+  const { dispatch } = useStoreon<State, Events>();
 
   const menuItems = [
     {
@@ -30,12 +31,12 @@ export function Menu({ id, text, }: MenuProps) {
     {
       icon: Icons.Edit,
       text: 'Редактировать',
-      OnClick: () => console.log(''),
+      OnClick: () => dispatch('tasks/edit', { id, text, isEdit, }),
     },
     {
       icon: Icons.Delete,
       text: 'Удалить',
-      OnClick: () => dispatch('tasks/delete', { id, text, }),
+      OnClick: () => dispatch('tasks/delete', { id, text, isEdit, }),
     },
   ].map(generateId);
 

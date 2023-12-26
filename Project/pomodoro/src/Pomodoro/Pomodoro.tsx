@@ -8,7 +8,7 @@ import { State, Events } from '../store/store';
 import { TaskFormContainer } from './TaskFormContainer/TaskFormContainer';
 
 export function Pomodoro() {
-  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
+  const { tasks } = useStoreon<State, Events>('tasks');
   
   return (
     <section>

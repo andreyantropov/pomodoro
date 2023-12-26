@@ -5,7 +5,7 @@ import { State, Events } from '../../store/store';
 import { TaskForm } from '../TaskForm/TaskForm';
 
 export function TaskFormContainer() {
-  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
+  const { dispatch } = useStoreon<State, Events>();
   const [value, setValue] = useState('');
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -14,9 +14,10 @@ export function TaskFormContainer() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('tasks/add', { id: nanoid(), text: value.trim(), });
+    dispatch('tasks/add', { id: nanoid(), text: value.trim(), isEdit: false, });
     setValue('');
   }
+  
   return (
     <TaskForm value={value} OnChange={handleChange} OnSubmit={handleSubmit} />
   );

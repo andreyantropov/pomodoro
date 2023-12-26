@@ -5,15 +5,16 @@ import { useStoreon } from 'storeon/react';
 import { Events, State } from '../../store/store';
 
 export function TaskList() {
-  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
+  const { tasks } = useStoreon<State, Events>('tasks');
 
   return (
       <ul className={styles.list}>
-        { tasks.map(({ id, text }) => (
+        { tasks.map(({ id, text, isEdit }) => (
             <Task
               key={id}
               id={id}
               text={text}
+              isEdit={isEdit}
             />
           ))
         }
