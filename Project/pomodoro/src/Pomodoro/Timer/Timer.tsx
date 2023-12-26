@@ -12,7 +12,7 @@ export function Timer() {
       <span className={styles.timer}>25:00</span>
 
       <div className={styles.taskContainer}>
-        <span className={styles.number}>Зачада 1 - </span>
+        <span className={styles.number}>Задача 1 - </span>
         <span className={styles.task}>Сверстать сайт</span>
       </div>
 

@@ -17,6 +17,10 @@
     background-color: #f4f4f4;
 }
 
+.input:focus {
+    outline: 2px solid var(--grey-light);
+}
+
 .addBtn {
     margin-bottom: 25px;
     padding: 15px 50px;
@@ -31,6 +35,7 @@
 
 .addBtn:focus {
     border: 2px solid var(--secondary-light);
+    outline: none;
     background-color: var(--secondary-light);
 }
 

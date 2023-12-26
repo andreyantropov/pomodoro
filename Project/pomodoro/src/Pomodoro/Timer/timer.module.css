@@ -69,6 +69,7 @@
 
 .startBtn:focus {
     border: 2px solid var(--secondary-light);
+    outline: none;
     background-color: var(--secondary-light);
 }
 
@@ -102,6 +103,7 @@
 
 .stopBtn:focus:enabled {
     border: 2px solid var(--primary-darker);
+    outline: none;
     color: var(--primary-darker);
 }
 

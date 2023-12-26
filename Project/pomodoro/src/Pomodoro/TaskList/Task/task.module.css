@@ -40,3 +40,7 @@
     border: none;
     background-color: transparent;
 }
+
+.input:focus:enabled {
+    outline: 2px solid var(--grey-light);
+}
