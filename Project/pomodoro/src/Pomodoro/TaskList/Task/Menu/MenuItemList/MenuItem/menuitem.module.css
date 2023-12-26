@@ -5,4 +5,22 @@
     font-size: 16px;
     font-size: 300;
     color: var(--grey-light);
+    cursor: default;
+}
+
+.item:focus {
+    outline: 1px solid var(--grey);
+    background-color: var(--grey-light);
+}
+
+@media (any-hover: hover) {
+    .item:hover {
+        outline: none;
+        background-color: #f4f4f4;
+    }
+}
+
+.item:active {
+    outline: none;
+    background-color: var(--grey);
 }

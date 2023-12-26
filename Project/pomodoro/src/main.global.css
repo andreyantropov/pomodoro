@@ -7,10 +7,11 @@
   --secondary: #a8b64f;
   --secondary-darker: #899441;
   --secondary-dark: #838c49;
-  --black: #333;
-  --grey: #c4c4c4;
-  --grey-light: #999;
+  
   --white: #fff;
+  --grey-light: #999;
+  --grey: #c4c4c4;
+  --black: #333;
 }
  
 body {
