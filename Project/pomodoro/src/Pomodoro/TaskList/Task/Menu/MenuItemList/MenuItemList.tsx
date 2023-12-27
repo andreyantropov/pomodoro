@@ -7,6 +7,7 @@ interface Item {
   id: string;
   icon: Icons;
   text: string;
+  isDisabled: boolean;
   OnClick: () => void;
 }
 
@@ -17,12 +18,13 @@ interface MenuItemListProps {
 export function MenuItemList({ items }: MenuItemListProps) {
   return (
     <ul className={styles.menuItemsList}>
-      { items.map(({ id, icon, text, OnClick }) => (
+      { items.map(({ id, icon, text, isDisabled, OnClick }) => (
         <MenuItem 
           key={id}
           id={id}
           icon={icon}
           text={text}
+          isDisabled={isDisabled}
           OnClick={OnClick}
         />
       )) }

@@ -22,21 +22,25 @@ export function Menu({ id, text, isEdit, tomatoes }: MenuProps) {
     {
       icon: Icons.Increase,
       text: 'Увеличить',
+      isDisabled: tomatoes === 4,
       OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: isEdit, tomatoes: ++tomatoes }),
     },
     {
       icon: Icons.Decrease,
       text: 'Уменьшить',
+      isDisabled: tomatoes === 1,
       OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: isEdit, tomatoes: --tomatoes }),
     },
     {
       icon: Icons.Edit,
       text: 'Редактировать',
+      isDisabled: false,
       OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: true, tomatoes: tomatoes }),
     },
     {
       icon: Icons.Delete,
       text: 'Удалить',
+      isDisabled: false,
       OnClick: () => dispatch('tasks/delete', { id: id, text: text, isEdit, tomatoes: tomatoes }),
     },
   ].map(generateId);

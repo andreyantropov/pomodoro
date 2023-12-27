@@ -8,6 +8,10 @@
     cursor: default;
 }
 
+.disabled {
+    opacity: 0.3;
+}
+
 .item:focus {
     outline: 1px solid var(--grey);
     background-color: var(--grey-light);
