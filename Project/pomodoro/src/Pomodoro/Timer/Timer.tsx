@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './timer.module.css';
+import { PlusIcon } from '../../Icon/PlusIcon';
 
 export function Timer() {
   return (
@@ -9,7 +10,12 @@ export function Timer() {
         <span className={styles.tomato}>Помидор 1</span>
       </div>
 
-      <span className={styles.timer}>25:00</span>
+      <div className={styles.timerContainer}>
+        <span className={styles.timer}>25:00</span>
+        <button>
+          <PlusIcon />
+        </button>
+      </div>
 
       <div className={styles.taskContainer}>
         <span className={styles.number}>Задача 1 - </span>
