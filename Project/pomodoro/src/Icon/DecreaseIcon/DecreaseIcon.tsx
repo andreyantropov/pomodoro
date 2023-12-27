@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './zoomouticon.css';
+import styles from './decreaseicon.css';
 
-interface ZoomOutIconProps {
+interface DecreaseIconProps {
   size?: number;
 }
 
-export function ZoomOutIcon({ size = 18 }: ZoomOutIconProps) {
+export function DecreaseIcon({ size = 18 }: DecreaseIconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="control_point" clipPath="url(#clip0_35_103)">

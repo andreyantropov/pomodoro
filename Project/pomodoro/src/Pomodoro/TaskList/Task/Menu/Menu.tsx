@@ -9,34 +9,35 @@ import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../store/store';
 
 interface MenuProps {
-  id: string;
+  id: number;
   text: string;
   isEdit: boolean;
+  tomatoes: number;
 }
 
-export function Menu({ id, text, isEdit, }: MenuProps) {
+export function Menu({ id, text, isEdit, tomatoes }: MenuProps) {
   const { dispatch } = useStoreon<State, Events>();
 
   const menuItems = [
     {
-      icon: Icons.ZoomIn,
+      icon: Icons.Increase,
       text: 'Увеличить',
-      OnClick: () => console.log(''),
+      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: isEdit, tomatoes: ++tomatoes }),
     },
     {
-      icon: Icons.ZoomOut,
+      icon: Icons.Decrease,
       text: 'Уменьшить',
-      OnClick: () => console.log(''),
+      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: isEdit, tomatoes: --tomatoes }),
     },
     {
       icon: Icons.Edit,
       text: 'Редактировать',
-      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: true, }),
+      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: true, tomatoes: tomatoes }),
     },
     {
       icon: Icons.Delete,
       text: 'Удалить',
-      OnClick: () => dispatch('tasks/delete', { id: id, text: text, isEdit, }),
+      OnClick: () => dispatch('tasks/delete', { id: id, text: text, isEdit, tomatoes: tomatoes }),
     },
   ].map(generateId);
 

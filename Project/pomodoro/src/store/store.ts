@@ -6,15 +6,15 @@ export interface State {
 
 export interface Events {
     'tasks/add': Task;
-    'tasks/edit': Task;
     'tasks/update': Task;
     'tasks/delete': Task;
 }
 
 interface Task {
-    id: string;
+    id: number;
     text: string;
     isEdit: boolean;
+    tomatoes: number;
 }
 
 const tasksModule: StoreonModule<State, Events> = store => {

@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './zoominicon.module.css';
+import styles from './increaseicon.module.css';
 
-interface ZoomInIconProps {
+interface IncreaseIconProps {
   size?: number;
 }
 
-export function ZoomInIcon({ size = 18 }: ZoomInIconProps) {
+export function IncreaseIcon({ size = 18 }: IncreaseIconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="control_point" clipPath="url(#clip0_35_100)">

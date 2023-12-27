@@ -5,6 +5,6 @@ export enum Icons {
     Delete = 'delete',
     Menu = 'menu',
     Plus = 'plus',
-    ZoomIn = 'zoom-in',
-    ZoomOut = 'zoom-out',
+    Increase = 'increase',
+    Decrease = 'decrease',
 }

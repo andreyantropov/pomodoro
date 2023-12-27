@@ -4,19 +4,20 @@ import { Menu } from './Menu';
 import { TaskEditFormContainer } from './TaskEditFormContainer';
 
 interface TaskProps {
-  id: string;
+  id: number;
   text: string;
   isEdit: boolean;
+  tomatoes: number;
 }
 
-export function Task({ id, text, isEdit }: TaskProps) {
+export function Task({ id, text, isEdit, tomatoes }: TaskProps) {
   return (
     <li className={styles.taskComponent}>
       <div className={styles.taskContainer}>
-        <span className={styles.number}>1</span>
-        <TaskEditFormContainer id={id} text={text} isEdit={isEdit} />
+        <span className={styles.number}>{tomatoes}</span>
+        <TaskEditFormContainer id={id} text={text} isEdit={isEdit} tomatoes={tomatoes} />
       </div>
-      <Menu id={id} text={text} isEdit={isEdit} />
+      <Menu id={id} text={text} isEdit={isEdit} tomatoes={tomatoes} />
     </li>
   );
 }

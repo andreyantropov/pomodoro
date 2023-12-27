@@ -6,8 +6,8 @@ import { EditIcon } from './EditIcon';
 import { DeleteIcon } from './DeleteIcon';
 import { MenuIcon } from './MenuIcon';
 import { PlusIcon } from './PlusIcon';
-import { ZoomInIcon } from './ZoomInIcon';
-import { ZoomOutIcon } from './ZoomOutIcon';
+import { IncreaseIcon } from './IncreaseIcon';
+import { DecreaseIcon } from './DecreaseIcon';
 import { Icons } from '../enums/Icons';
 
 interface IconProps {
@@ -30,10 +30,10 @@ export function Icon({ name, size }: IconProps) {
         return <MenuIcon size={size} />;
       case Icons.Plus:
         return <PlusIcon size={size} />;
-      case Icons.ZoomIn:
-        return <ZoomInIcon size={size} />;
-      case Icons.ZoomOut:
-        return <ZoomOutIcon size={size} />;
+      case Icons.Increase:
+        return <IncreaseIcon size={size} />;
+      case Icons.Decrease:
+        return <DecreaseIcon size={size} />;
       default:
         return <div></div>;
     }

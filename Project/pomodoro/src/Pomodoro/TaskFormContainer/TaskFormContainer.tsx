@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../store/store';
@@ -14,7 +13,7 @@ export function TaskFormContainer() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('tasks/add', { id: nanoid(), text: value.trim(), isEdit: false, });
+    dispatch('tasks/add', { id: Date.now(), text: value.trim(), isEdit: false, tomatoes: 1, });
     setValue('');
   }
   
