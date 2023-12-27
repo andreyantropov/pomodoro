@@ -44,7 +44,7 @@ export function Menu({ id, text, isEdit, }: MenuProps) {
     <div className={styles.menuComponent}>
       <DropDown
         button={
-          <button>
+          <button className={styles.dropdownBtn}>
             <Icon name={Icons.Menu} />
           </button>
         }
