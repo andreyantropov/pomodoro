@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './tasklist.module.css';
-import { Task } from './Task';
+import { Task } from './Task/Task';
 import { useStoreon } from 'storeon/react';
 import { Events, State } from '../../store/store';
 
