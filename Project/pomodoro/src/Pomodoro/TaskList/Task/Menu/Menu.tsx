@@ -7,41 +7,39 @@ import { Icon } from '../../../../Icon';
 import { Icons } from '../../../../enums/Icons';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../store/store';
+import { Task } from '../../../../interfaces/task';
 
 interface MenuProps {
-  id: number;
-  text: string;
-  isEdit: boolean;
-  tomatoes: number;
+  task: Task;
 }
 
-export function Menu({ id, text, isEdit, tomatoes }: MenuProps) {
+export function Menu({ task }: MenuProps) {
   const { dispatch } = useStoreon<State, Events>();
 
   const menuItems = [
     {
       icon: Icons.Increase,
       text: 'Увеличить',
-      isDisabled: tomatoes === 4,
-      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: isEdit, tomatoes: ++tomatoes }),
+      isDisabled: task.tomatoes === 4,
+      OnClick: () => dispatch('tasks/update', { ...task, tomatoes: ++task.tomatoes }),
     },
     {
       icon: Icons.Decrease,
       text: 'Уменьшить',
-      isDisabled: tomatoes === 1,
-      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: isEdit, tomatoes: --tomatoes }),
+      isDisabled: task.tomatoes === 1,
+      OnClick: () => dispatch('tasks/update', { ...task, tomatoes: --task.tomatoes }),
     },
     {
       icon: Icons.Edit,
       text: 'Редактировать',
       isDisabled: false,
-      OnClick: () => dispatch('tasks/update', { id: id, text: text, isEdit: true, tomatoes: tomatoes }),
+      OnClick: () => dispatch('tasks/update', { ...task, isEdit: true }),
     },
     {
       icon: Icons.Delete,
       text: 'Удалить',
       isDisabled: false,
-      OnClick: () => dispatch('tasks/delete', { id: id, text: text, isEdit, tomatoes: tomatoes }),
+      OnClick: () => dispatch('tasks/delete', task),
     },
   ].map(generateId);
 

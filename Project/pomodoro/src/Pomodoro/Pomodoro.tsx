@@ -26,10 +26,10 @@ export function Pomodoro() {
           <div className={styles.tasks}>
             <Instruction />
             <TaskFormContainer />
-            <TaskList />
+            <TaskList tasks={tasks} />
             <span className={styles.totalTime}>{totalTime} мин</span>
           </div>
-          <Timer />
+          <Timer currentTask={tasks.length ? tasks[0] : undefined} />
         </div>
       </div>
     </section>

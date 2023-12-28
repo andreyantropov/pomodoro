@@ -1,4 +1,5 @@
 import { StoreonModule, createStoreon } from "storeon";
+import { Task } from "../interfaces/task";
 
 export interface State {
     tasks: Task[];
@@ -8,13 +9,6 @@ export interface Events {
     'tasks/add': Task;
     'tasks/update': Task;
     'tasks/delete': Task;
-}
-
-interface Task {
-    id: number;
-    text: string;
-    isEdit: boolean;
-    tomatoes: number;
 }
 
 const tasksModule: StoreonModule<State, Events> = store => {

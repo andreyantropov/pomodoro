@@ -1,21 +1,19 @@
 import React from 'react';
 import styles from './tasklist.module.css';
-import { Task } from './Task/Task';
-import { useStoreon } from 'storeon/react';
-import { Events, State } from '../../store/store';
+import { TaskItem } from './Task/TaskItem';
+import { Task } from '../../interfaces/task';
 
-export function TaskList() {
-  const { tasks } = useStoreon<State, Events>('tasks');
+interface TaskListProps {
+  tasks: Task[];
+}
 
+export function TaskList({ tasks }: TaskListProps) {
   return (
       <ul className={styles.list}>
-        { tasks.map(({ id, text, isEdit, tomatoes }) => (
-            <Task
-              key={id}
-              id={id}
-              text={text}
-              isEdit={isEdit}
-              tomatoes={tomatoes}
+        { tasks.map((task) => (
+            <TaskItem
+              key={task.id}
+              task={task}
             />
           ))
         }

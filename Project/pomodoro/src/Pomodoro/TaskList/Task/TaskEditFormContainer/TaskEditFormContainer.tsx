@@ -3,17 +3,15 @@ import styles from './taskeditformcontainer.css';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../store/store';
 import { TaskEditForm } from '../TaskEditForm/TaskEditForm';
+import { Task } from '../../../../interfaces/task';
 
 interface TakeEditFormContainer {
-  id: number;
-  text: string;
-  isEdit?: boolean;
-  tomatoes: number;
+  task: Task;
 }
 
-export function TaskEditFormContainer({ id, text, isEdit = false, tomatoes }: TakeEditFormContainer) {
+export function TaskEditFormContainer({ task }: TakeEditFormContainer) {
   const { dispatch } = useStoreon<State, Events>();
-  const [value, setValue] = useState(text);
+  const [value, setValue] = useState(task.text);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
@@ -21,17 +19,17 @@ export function TaskEditFormContainer({ id, text, isEdit = false, tomatoes }: Ta
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Escape') {
-      setValue(text);
-      dispatch('tasks/update', { id: id, text: value, isEdit: false, tomatoes: tomatoes });
+      setValue(task.text);
+      dispatch('tasks/update', { id: task.id, text: value, isEdit: false, tomatoes: task.tomatoes, currentTomato: task.currentTomato });
     }
   }
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('tasks/update', { id: id, text: value, isEdit: false, tomatoes: tomatoes });
+    dispatch('tasks/update', { id: task.id, text: value, isEdit: false, tomatoes: task.tomatoes, currentTomato: task.currentTomato });
   }
 
   return (
-    <TaskEditForm value={value} isEdit={isEdit} OnChange={handleChange} OnKeyDown={handleKeyDown} OnSubmit={handleSubmit} />
+    <TaskEditForm value={value} isEdit={task.isEdit} OnChange={handleChange} OnKeyDown={handleKeyDown} OnSubmit={handleSubmit} />
   );
 }

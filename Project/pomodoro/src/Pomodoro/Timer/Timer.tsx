@@ -1,14 +1,24 @@
 import React from 'react';
 import styles from './timer.module.css';
 import { PlusIcon } from '../../Icon/PlusIcon';
+import { Title } from './Title';
 
-export function Timer() {
+interface TimerProps {
+  currentTask?: Task;
+}
+
+interface Task {
+  id: number;
+  text: string;
+  isEdit: boolean;
+  tomatoes: number;
+  currentTomato: number;
+}
+
+export function Timer({ currentTask }: TimerProps) {  
   return (
     <div className={styles.timerComponent}>
-      <div className={styles.titleContainer}>
-        <h3 className={styles.title}>Сверстать сайт</h3>
-        <span className={styles.tomato}>Помидор 1</span>
-      </div>
+      <Title task={currentTask ? currentTask.text : 'Задача отсутствует'} tomato={currentTask ? currentTask.currentTomato : 0} />
 
       <div className={styles.timerContainer}>
         <span className={styles.timer}>25:00</span>
