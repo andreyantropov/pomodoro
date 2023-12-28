@@ -6,19 +6,19 @@
 }
 
 .input {
-    border: 2px solid #f4f4f4;
+    border: 2px solid var(--grey-light);
     padding: 20px 15px;
     width: 100%;
     font-style: inherit;
     font-size: 16px;
     font-weight: 300;
     line-height: 17px;
-    color: var(--grey-light);
-    background-color: #f4f4f4;
+    color: var(--grey);
+    background-color: var(--grey-light);
 }
 
 .input:focus {
-    outline: 2px solid var(--grey-light);
+    outline: 2px solid var(--grey);
 }
 
 .addBtn {

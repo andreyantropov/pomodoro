@@ -4,7 +4,7 @@
     padding: 10px 15px;
     font-size: 16px;
     font-size: 300;
-    color: var(--grey-light);
+    color: var(--grey);
     cursor: default;
 }
 
@@ -13,18 +13,18 @@
 }
 
 .item:focus {
-    outline: 1px solid var(--grey);
-    background-color: var(--grey-light);
+    outline: 1px solid var(--grey-lighter);
+    background-color: var(--grey);
 }
 
 @media (any-hover: hover) {
     .item:hover {
         outline: none;
-        background-color: #f4f4f4;
+        background-color: var(--grey-light);
     }
 }
 
 .item:active {
     outline: none;
-    background-color: var(--grey);
+    background-color: var(--grey-lighter);
 }

@@ -10,8 +10,9 @@
   --secondary-dark: #838c49;
 
   --white: #fff;
-  --grey-light: #999;
-  --grey: #c4c4c4;
+  --grey-light: #f4f4f4;
+  --grey-lighter: #c4c4c4;
+  --grey: #999;
   --black: #333;
 }
  

@@ -17,15 +17,15 @@
 }
 
 .dropdownBtn:focus {
-    border: 1px solid #f4f4f4;
+    border: 1px solid var(--grey-light);
 }
 
 @media (any-hover: hover) {
     .dropdownBtn:hover {
-        background-color: #f4f4f4;
+        background-color: var(--grey-light);
     }
 }
 
 .dropdownBtn:active {
-    background-color: var(--grey);
+    background-color: var(--grey-lighter);
 }

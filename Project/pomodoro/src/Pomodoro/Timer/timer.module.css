@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: #f4f4f4;
+    background-color: var(--grey-light);
 }
 
 .timerContainer {
@@ -27,7 +27,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 17px;
-    color: var(--grey-light);
+    color: var(--grey);
 }
 
 .task {
@@ -81,8 +81,8 @@
 }
 
 .stopBtn:disabled {
-    border: 2px solid var(--grey);
-    color: var(--grey);
+    border: 2px solid var(--grey-lighter);
+    color: var(--grey-lighter);
     cursor: default;
 }
 
