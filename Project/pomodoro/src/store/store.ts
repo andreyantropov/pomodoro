@@ -41,7 +41,7 @@ const tasksModule: StoreonModule<TasksState, TasksEvents> = store => {
 }
 
 const timerModule: StoreonModule<TimerState, TimerEvents> = store => {
-    store.on('@init', () => ({ timer: { time: 1500, tomatoes: 1, status: 'Задача' } }));
+    store.on('@init', () => ({ timer: { time: 1_500_000, tomatoes: 1, status: 'Задача' } }));
 
     store.on('timer/time/set', ({ timer }, updTime) => {
         return { timer: {...timer, time: updTime} };
