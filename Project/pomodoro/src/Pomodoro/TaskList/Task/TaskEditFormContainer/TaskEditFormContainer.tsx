@@ -20,13 +20,13 @@ export function TaskEditFormContainer({ task }: TakeEditFormContainer) {
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Escape') {
       setValue(task.text);
-      dispatch('tasks/update', { id: task.id, text: value, isEdit: false, tomatoes: task.tomatoes, currentTomato: task.currentTomato });
+      dispatch('tasks/update', { ...task, isEdit: false });
     }
   }
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('tasks/update', { id: task.id, text: value, isEdit: false, tomatoes: task.tomatoes, currentTomato: task.currentTomato });
+    dispatch('tasks/update', { ...task, text: value, isEdit: false });
   }
 
   return (
