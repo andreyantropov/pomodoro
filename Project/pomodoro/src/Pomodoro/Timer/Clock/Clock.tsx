@@ -11,7 +11,6 @@ interface ClockProps {
 
 export function Clock({ timer }: ClockProps) {
   const { dispatch } = useStoreon<State, Events>();
-  const [time, setTime] = useState(timer.time);
   const [minutes, setMinutes] = useState('25');
   const [seconds, setSeconds] = useState('00');
 
@@ -20,22 +19,21 @@ export function Clock({ timer }: ClockProps) {
 
     if (timer.isRunning) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime - 1000);
-        dispatch('timer/time/set', time);
+        dispatch('timer/time/set', timer.time - 1000);
       }, 1000);
     }
 
     return () => {
       clearInterval(interval);
     };
-  }, [timer.isRunning]);
+  }, [timer]);
 
   useEffect(() => {
-    const min = Math.floor(time / 60_000);
+    const min = Math.floor(timer.time / 60_000);
     setMinutes( min.toString().padStart(2, '0') );
-    const sec = ((time % 60_000) / 1000);
+    const sec = ((timer.time % 60_000) / 1000);
     setSeconds( sec.toString().padStart(2, '0') );
-  }, [time]);
+  }, [timer.time]);
 
   return (
     <div className={styles.clockComponent}>

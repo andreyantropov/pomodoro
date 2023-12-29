@@ -50,7 +50,7 @@ export function Buttons({ timer }: ButtonsProps) {
 
   return (
     <div className={styles.buttonsComponent}>
-      <button className={styles.startBtn} onClick={handleStartClick}>Старт</button>
+      <button className={styles.startBtn} onClick={handleContinueClick}>Старт</button>
       <button className={styles.stopBtn} onClick={handlePauseClick} disabled={timer.status === 'stop'}>Стоп</button>
     </div>
   );
