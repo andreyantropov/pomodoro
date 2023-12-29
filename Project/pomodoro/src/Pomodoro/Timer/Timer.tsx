@@ -31,7 +31,7 @@ export function Timer({ currentTask }: TimerProps) {
         <span className={styles.task}>{currentTask ? currentTask.text : 'Задача отсутствует'}</span>
       </div>
 
-      <Buttons timer={timer} />
+      <Buttons timer={timer} currentTask={currentTask} />
     </div>
   );
 }
