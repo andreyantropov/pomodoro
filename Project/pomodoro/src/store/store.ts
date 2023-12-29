@@ -1,6 +1,6 @@
 import { StoreonModule, createStoreon } from "storeon";
 import { Task } from "../interfaces/task";
-import { Timer, status } from "../interfaces/timer";
+import { Status, Timer } from "../interfaces/timer";
 
 export interface State extends TasksState, TimerState { }
 
@@ -23,7 +23,7 @@ interface TimerState {
 interface TimerEvents {
     'timer/time/set': number;
     'timer/tomatoes/set': number;
-    'timer/status/set': status;
+    'timer/status/set': Status;
 }
 
 const tasksModule: StoreonModule<TasksState, TasksEvents> = store => {

@@ -1,0 +1,12 @@
+.clockComponent {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 64px;
+}
+
+.clock {
+    padding-left: 75px;
+    font-size: 150px;
+    font-weight: 200;
+}
