@@ -24,6 +24,7 @@ interface TimerEvents {
     'timer/time/set': number;
     'timer/tomatoes/set': number;
     'timer/status/set': Status;
+    'timer/isrunning/set': boolean;
 }
 
 const tasksModule: StoreonModule<TasksState, TasksEvents> = store => {
@@ -41,7 +42,7 @@ const tasksModule: StoreonModule<TasksState, TasksEvents> = store => {
 }
 
 const timerModule: StoreonModule<TimerState, TimerEvents> = store => {
-    store.on('@init', () => ({ timer: { time: 1_500_000, tomatoes: 1, status: 'Задача' } }));
+    store.on('@init', () => ({ timer: { time: 1_500_000, tomatoes: 1, status: 'stop', isRunning: false } }));
 
     store.on('timer/time/set', ({ timer }, updTime) => {
         return { timer: {...timer, time: updTime} };
@@ -51,6 +52,9 @@ const timerModule: StoreonModule<TimerState, TimerEvents> = store => {
     });
     store.on('timer/status/set', ({ timer }, updStatus) => {
         return { timer: {...timer, status: updStatus} };
+    });
+    store.on('timer/isrunning/set', ({ timer }, updIsRunning) => {
+        return { timer: {...timer, isRunning: updIsRunning} };
     });
 }
   

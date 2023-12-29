@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './clock.module.css';
 import { PlusIcon } from '../../../Icon/PlusIcon';
 import { Timer } from '../../../interfaces/timer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
-import { isRunningContext } from '../../../contexts/IsRunning';
 
 interface ClockProps {
   timer: Timer;
 }
 
 export function Clock({ timer }: ClockProps) {
-  const { dispatch } = useStoreon<State, Events>('timer');
-  const { isRunning } = useContext(isRunningContext);
+  const { dispatch } = useStoreon<State, Events>();
   const [time, setTime] = useState(timer.time);
   const [minutes, setMinutes] = useState('25');
   const [seconds, setSeconds] = useState('00');
@@ -20,7 +18,7 @@ export function Clock({ timer }: ClockProps) {
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (isRunning) {
+    if (timer.isRunning) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime - 1000);
         dispatch('timer/time/set', time);
@@ -30,7 +28,7 @@ export function Clock({ timer }: ClockProps) {
     return () => {
       clearInterval(interval);
     };
-  }, [isRunning]);
+  }, [timer.isRunning]);
 
   useEffect(() => {
     const min = Math.floor(time / 60_000);

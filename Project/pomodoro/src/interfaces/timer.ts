@@ -2,6 +2,7 @@ export interface Timer {
     time: number;
     tomatoes: number;
     status: Status;
+    isRunning: boolean;
 }
 
-export type Status =  'Задача' | 'Короткий перерыв' | 'Длинный пееррыв';
+export type Status =  'in progress' | 'break' | 'stop';
