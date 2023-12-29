@@ -23,7 +23,7 @@ export function Timer({ currentTask }: TimerProps) {
 
   return (
     <div className={styles.timerComponent}>
-      <Title task={currentTask ? currentTask.text : 'Задача отсутствует'} tomato={currentTask ? currentTask.currentTomato : 0} />
+      <Title currentTask={currentTask} />
       <Clock timer={timer} />
 
       <div className={styles.taskContainer}>

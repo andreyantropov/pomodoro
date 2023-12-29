@@ -4,6 +4,7 @@ import { PlusIcon } from '../../../Icon/PlusIcon';
 import { Timer } from '../../../interfaces/timer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
+import { PlusBtn } from './PlusBtn';
 
 interface ClockProps {
   timer: Timer;
@@ -38,9 +39,7 @@ export function Clock({ timer }: ClockProps) {
   return (
     <div className={styles.clockComponent}>
       <span className={styles.clock}>{minutes}:{seconds}</span>
-      <button>
-        <PlusIcon />
-      </button>
+      <PlusBtn timer={timer} />
     </div>
   );
 }

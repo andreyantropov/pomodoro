@@ -50,7 +50,7 @@ export function Buttons({ timer, currentTask }: ButtonsProps) {
     } else {
       dispatch('timer/time/set', 1_200_000);
     }
-    dispatch('timer/isrunning/set', false);
+    dispatch('timer/isrunning/set', true);
   }
 
   return (
