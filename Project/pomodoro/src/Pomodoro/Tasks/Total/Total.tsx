@@ -12,8 +12,7 @@ export function Total({ tasks }: TaskListProps) {
   useEffect(() => {
     let tomatoes = 0;
     for (const task of tasks) {
-      const unfinishedTomatoes = task.tomatoes - Math.min(task.tomatoes, task.currentTomato - 1);
-      tomatoes += unfinishedTomatoes;
+      tomatoes += task.tomatoes;
     }
     setTotalTime(tomatoes * 25);
   }, [tasks]);
