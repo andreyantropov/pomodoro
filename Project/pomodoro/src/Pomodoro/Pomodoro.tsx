@@ -6,18 +6,10 @@ import { TaskList } from './TaskList';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../store/store';
 import { TaskFormContainer } from './TaskFormContainer/TaskFormContainer';
+import { Total } from './Total';
 
 export function Pomodoro() {
   const { tasks } = useStoreon<State, Events>('tasks');
-  const [totalTime, setTotalTime] = useState(0);
-
-  useEffect(() => {
-    let tomatoes = 0;
-    for (const task of tasks) {
-      tomatoes += task.tomatoes;
-    }
-    setTotalTime(tomatoes * 25);
-  }, [tasks]);
   
   return (
     <section>
@@ -27,7 +19,7 @@ export function Pomodoro() {
             <Instruction />
             <TaskFormContainer />
             <TaskList tasks={tasks} />
-            <span className={styles.totalTime}>{totalTime} мин</span>
+            <Total tasks={tasks} />
           </div>
           <Timer currentTask={tasks.length ? tasks[0] : undefined} />
         </div>
