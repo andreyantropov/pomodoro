@@ -5,6 +5,7 @@ import { Timer } from '../../../interfaces/timer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
 import { PlusBtn } from './PlusBtn';
+import classNames from 'classnames';
 
 interface ClockProps {
   timer: Timer;
@@ -36,9 +37,15 @@ export function Clock({ timer }: ClockProps) {
     setSeconds( sec.toString().padStart(2, '0') );
   }, [timer.time]);
 
+  const clockClasses = classNames(
+    styles.clock,
+    { [styles.inProgress]: timer.status === 'in progress' && timer.isRunning },
+    { [styles.break]: timer.status === 'break' && timer.isRunning },
+  );
+
   return (
     <div className={styles.clockComponent}>
-      <span className={styles.clock}>{minutes}:{seconds}</span>
+      <span className={clockClasses}>{minutes}:{seconds}</span>
       <PlusBtn timer={timer} />
     </div>
   );

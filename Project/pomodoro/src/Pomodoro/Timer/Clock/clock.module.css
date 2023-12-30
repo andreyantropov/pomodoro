@@ -10,3 +10,11 @@
     font-size: 150px;
     font-weight: 200;
 }
+
+.inProgress {
+    color: var(--primary);
+}
+
+.break {
+    color: var(--secondary);
+}

@@ -16,7 +16,7 @@ export function Timer() {
 
   return (
     <div className={styles.timerComponent}>
-      <Title currentTask={currentTask} />
+      <Title currentTask={currentTask} timer={timer} />
       <Clock timer={timer} />
 
       <div className={styles.taskContainer}>
