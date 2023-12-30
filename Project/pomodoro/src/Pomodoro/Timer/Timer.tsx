@@ -6,14 +6,6 @@ import { useStoreon } from 'storeon/react';
 import { Clock } from './Clock';
 import { Buttons } from './Buttons';
 
-interface Task {
-  id: number;
-  text: string;
-  isEdit: boolean;
-  tomatoes: number;
-  currentTomato: number;
-}
-
 export function Timer() {
   const { tasks, timer } = useStoreon<State, Events>('tasks', 'timer');
   const [ currentTask, setCurrentTask ] = useState(tasks[0]);
