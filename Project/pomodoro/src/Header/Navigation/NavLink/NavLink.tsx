@@ -14,7 +14,7 @@ export function NavLink({ icon, text, url }: NavLinkProps) {
   return (
     <li className={styles.navItem}>
       <Link to={url} className={styles.navLink} >
-        <Icon name={icon} />
+        <Icon name={icon} className={styles.icon} />
         {text}
       </Link>
     </li>

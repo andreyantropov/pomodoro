@@ -3,7 +3,8 @@ import styles from './plusbtn.module.css';
 import { Timer } from '../../../../interfaces/timer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../store/store';
-import { PlusIcon } from '../../../../Icon/PlusIcon';
+import { Icon } from '../../../../Icon';
+import { Icons } from '../../../../enums/Icons';
 
 interface PlusBtnProps {
   timer: Timer;
@@ -17,8 +18,8 @@ export function PlusBtn({ timer }: PlusBtnProps) {
   }
 
   return (
-    <button onClick={handleClick}>
-      <PlusIcon />
+    <button className={styles.btn} onClick={handleClick}>
+      <Icon name={Icons.Plus} className={styles.plusIcon} />
     </button>
   );
 }

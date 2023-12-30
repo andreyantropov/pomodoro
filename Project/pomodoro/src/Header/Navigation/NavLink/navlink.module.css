@@ -7,6 +7,10 @@
     transition: color 0.3s;
 }
 
+.icon {
+    fill: var(--primary);
+}
+
 .navItem:focus {
     outline: 1px solid var(--primary);
 }
@@ -19,6 +23,10 @@
     .navItem:hover .navLink {
         color: var(--primary-darker);
     }
+
+    .navItem:hover .icon {
+        fill: var(--primary-darker);
+    }
 }
 
 .navItem:active {
@@ -27,4 +35,8 @@
 
 .navItem:active .navLink {
     color: var(--primary-dark);
+}
+
+.navItem:active .icon {
+    fill: var(--primary-dark);
 }

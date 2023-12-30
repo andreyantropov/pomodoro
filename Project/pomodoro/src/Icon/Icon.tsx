@@ -13,15 +13,16 @@ import { Icons } from '../enums/Icons';
 interface IconProps {
   name: Icons;
   size?: number;
+  className?: string;
 }
 
-export function Icon({ name, size }: IconProps) {
+export function Icon({ name, size, className }: IconProps) {
   const renderSwitch = (param: string) => {
     switch(param) {
       case Icons.Equalizer:
-        return <EqualizerIcon size={size} />;
+        return <EqualizerIcon size={size} className={className} />;
       case Icons.Settings:
-        return <SettingsIcon size={size} />;
+        return <SettingsIcon size={size} className={className} />;
       case Icons.Edit:
         return <EditIcon size={size} />;
       case Icons.Delete:
@@ -29,7 +30,7 @@ export function Icon({ name, size }: IconProps) {
       case Icons.Menu:
         return <MenuIcon size={size} />;
       case Icons.Plus:
-        return <PlusIcon size={size} />;
+        return <PlusIcon size={size} className={className} />;
       case Icons.Increase:
         return <IncreaseIcon size={size} />;
       case Icons.Decrease:
