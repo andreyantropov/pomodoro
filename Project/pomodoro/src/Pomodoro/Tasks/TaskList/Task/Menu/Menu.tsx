@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './menu.module.css';
-import { DropDown } from '../../../../DropDown';
-import { generateId } from '../../../../utils/generateRandomIndex';
+import { DropDown } from '../../../../../DropDown';
+import { generateId } from '../../../../../utils/generateRandomIndex';
 import { MenuItemList } from './MenuItemList';
-import { Icon } from '../../../../Icon';
-import { Icons } from '../../../../enums/Icons';
+import { Icon } from '../../../../../Icon';
+import { Icons } from '../../../../../enums/Icons';
 import { useStoreon } from 'storeon/react';
-import { State, Events } from '../../../../store/store';
-import { Task } from '../../../../interfaces/task';
+import { State, Events } from '../../../../../store/store';
+import { Task } from '../../../../../interfaces/task';
 
 interface MenuProps {
   task: Task;

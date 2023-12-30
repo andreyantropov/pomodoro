@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './taskeditformcontainer.css';
 import { useStoreon } from 'storeon/react';
-import { State, Events } from '../../../../store/store';
+import { State, Events } from '../../../../../store/store';
 import { TaskEditForm } from '../TaskEditForm/TaskEditForm';
-import { Task } from '../../../../interfaces/task';
+import { Task } from '../../../../../interfaces/task';
 
 interface TakeEditFormContainer {
   task: Task;

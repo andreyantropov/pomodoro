@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './menuitem.module.css';
-import { Icon } from '../../../../../../Icon';
-import { Icons } from '../../../../../../enums/Icons';
+import { Icon } from '../../../../../../../Icon';
+import { Icons } from '../../../../../../../enums/Icons';
 import classNames from 'classnames';
 
 interface Item {

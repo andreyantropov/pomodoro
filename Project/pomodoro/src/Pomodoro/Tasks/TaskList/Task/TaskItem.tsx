@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './taskitem.module.css';
 import { Menu } from './Menu';
 import { TaskEditFormContainer } from './TaskEditFormContainer';
-import { Task } from '../../../interfaces/task';
+import { Task } from '../../../../interfaces/task';
 
 interface TaskItemProps {
   task: Task;

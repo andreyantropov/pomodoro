@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useStoreon } from 'storeon/react';
-import { State, Events } from '../../store/store';
+import { State, Events } from '../../../store/store';
 import { TaskForm } from '../TaskForm/TaskForm';
 
 export function TaskFormContainer() {

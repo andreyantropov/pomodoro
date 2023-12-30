@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './pomodoro.module.css';
 import { Timer } from './Timer';
 import { Instruction } from './Instruction';
-import { TaskList } from './TaskList';
-import { useStoreon } from 'storeon/react';
-import { State, Events } from '../store/store';
-import { TaskFormContainer } from './TaskFormContainer/TaskFormContainer';
-import { Total } from './Total';
+import { Tasks } from './Tasks';
 
-export function Pomodoro() {
-  const { tasks } = useStoreon<State, Events>('tasks');
-  
+export function Pomodoro() {  
   return (
     <section>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.tasks}>
             <Instruction />
-            <TaskFormContainer />
-            <TaskList tasks={tasks} />
-            <Total tasks={tasks} />
+            <Tasks />
           </div>
-          <Timer currentTask={tasks.length ? tasks[0] : undefined} />
+          <Timer />
         </div>
       </div>
     </section>

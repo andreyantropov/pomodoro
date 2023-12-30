@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './timer.module.css';
 import { Title } from './Title';
 import { Events, State } from '../../store/store';
 import { useStoreon } from 'storeon/react';
 import { Clock } from './Clock';
 import { Buttons } from './Buttons';
-
-interface TimerProps {
-  currentTask?: Task;
-}
 
 interface Task {
   id: number;
@@ -18,8 +14,13 @@ interface Task {
   currentTomato: number;
 }
 
-export function Timer({ currentTask }: TimerProps) {
-  const { timer } = useStoreon<State, Events>('timer');
+export function Timer() {
+  const { tasks, timer } = useStoreon<State, Events>('tasks', 'timer');
+  const [ currentTask, setCurrentTask ] = useState(tasks[0]);
+
+  useEffect(() => {
+    setCurrentTask(tasks[0]);
+  }, [tasks]);
 
   return (
     <div className={styles.timerComponent}>

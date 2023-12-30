@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './total.module.css';
-import { Task } from '../../interfaces/task';
+import { Task } from '../../../interfaces/task';
 
 interface TaskListProps {
   tasks: Task[];
