@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './metricitem.module.css';
-import { Icon } from '../../../Icon';
-import { Icons } from '../../../enums/Icons';
+import { Icon } from '../../../../Icon';
+import { Icons } from '../../../../enums/Icons';
 
 export function MetricItem() {
   return (

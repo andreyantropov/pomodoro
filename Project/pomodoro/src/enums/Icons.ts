@@ -8,4 +8,7 @@ export enum Icons {
     Increase = 'increase',
     Decrease = 'decrease',
     Arrow = 'arrow',
+    Focus = 'focus',
+    Clock = 'clock',
+    Stop = 'stop',
 }

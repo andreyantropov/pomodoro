@@ -10,6 +10,9 @@ import { IncreaseIcon } from './IncreaseIcon';
 import { DecreaseIcon } from './DecreaseIcon';
 import { Icons } from '../enums/Icons';
 import { ArrowIcon } from './ArrowIcon';
+import { FocusIcon } from './FocusIcon';
+import { ClockIcon } from './ClockIcon';
+import { StopIcon } from './StopIcon';
 
 interface IconProps {
   name: Icons;
@@ -25,19 +28,25 @@ export function Icon({ name, size, className }: IconProps) {
       case Icons.Settings:
         return <SettingsIcon size={size} className={className} />;
       case Icons.Edit:
-        return <EditIcon size={size} />;
+        return <EditIcon size={size} className={className} />;
       case Icons.Delete:
-        return <DeleteIcon size={size} />;
+        return <DeleteIcon size={size} className={className} />;
       case Icons.Menu:
-        return <MenuIcon size={size} />;
+        return <MenuIcon size={size} className={className} />;
       case Icons.Plus:
         return <PlusIcon size={size} className={className} />;
       case Icons.Increase:
-        return <IncreaseIcon size={size} />;
+        return <IncreaseIcon size={size} className={className} />;
       case Icons.Decrease:
-        return <DecreaseIcon size={size} />;
+        return <DecreaseIcon size={size} className={className} />;
       case Icons.Arrow:
-        return <ArrowIcon size={size} />;
+        return <ArrowIcon size={size} className={className} />;
+      case Icons.Focus:
+        return <FocusIcon size={size} className={className} />;
+      case Icons.Clock:
+        return <ClockIcon size={size} className={className} />;
+      case Icons.Stop:
+        return <StopIcon size={size} className={className} />;
       default:
         return <div></div>;
     }

@@ -1,13 +1,14 @@
 import React, { ReactNode } from 'react';
 import styles from './metriclist.module.css';
-import { MetricItem } from './MetricItem';
 
-export function MetricList() {
+interface MetricListProps {
+  children?: ReactNode;
+}
+
+export function MetricList({ children }: MetricListProps) {
   return (
     <ul className={styles.metricList}>
-      <MetricItem />
-      <MetricItem />
-      <MetricItem />
+      {children}
     </ul>
   );
 }

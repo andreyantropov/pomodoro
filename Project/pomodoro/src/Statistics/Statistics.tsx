@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './statistics.module.css';
 import { Title } from './Title';
-import { MetricList } from './MetricList';
 import { Plot } from './Plot';
 import { Time } from './Time';
 import { Tomato } from './Tomato';
+import { Metrics } from './Metrics';
 
 export function Statistics() {
   return (
@@ -18,7 +18,7 @@ export function Statistics() {
           </div>
           <Plot />
         </div>
-        <MetricList />
+        <Metrics />
       </div>
     </section>
   );
