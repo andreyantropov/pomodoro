@@ -6,6 +6,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { PageNotFound } from './PageNotFound';
 import { StoreContext } from "storeon/react";
 import { store } from './store/store';
+import { Statistics } from './Statistics';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Navigate replace to="/tasks" />} />
             <Route path="/tasks" element={<Pomodoro />} />
+            <Route path="/statistics" element={<Statistics />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>
