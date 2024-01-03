@@ -1,4 +1,5 @@
 .timeComponent {
+    flex-grow: 1;
     padding: 25px;
     background-color: var(--grey-light);
 }

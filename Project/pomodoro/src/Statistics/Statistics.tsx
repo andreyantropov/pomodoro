@@ -11,7 +11,7 @@ export function Statistics() {
     <section>
       <div className={styles.container}>
         <Title />
-        <div>
+        <div className={styles.statistics}>
           <div className={styles.mainStats}>
             <Time />
             <Tomato />
