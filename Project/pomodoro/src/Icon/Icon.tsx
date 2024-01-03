@@ -9,6 +9,7 @@ import { PlusIcon } from './PlusIcon';
 import { IncreaseIcon } from './IncreaseIcon';
 import { DecreaseIcon } from './DecreaseIcon';
 import { Icons } from '../enums/Icons';
+import { ArrowIcon } from './ArrowIcon';
 
 interface IconProps {
   name: Icons;
@@ -35,6 +36,8 @@ export function Icon({ name, size, className }: IconProps) {
         return <IncreaseIcon size={size} />;
       case Icons.Decrease:
         return <DecreaseIcon size={size} />;
+      case Icons.Arrow:
+        return <ArrowIcon size={size} />;
       default:
         return <div></div>;
     }

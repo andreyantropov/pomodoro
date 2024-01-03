@@ -7,4 +7,5 @@ export enum Icons {
     Plus = 'plus',
     Increase = 'increase',
     Decrease = 'decrease',
+    Arrow = 'arrow',
 }
