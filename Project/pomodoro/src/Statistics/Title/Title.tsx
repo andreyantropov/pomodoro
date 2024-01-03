@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './title.module.css';
-import { Interval } from './Interval';
+import { Interval } from './Interval/Interval';
 
 export function Title() {
   return (

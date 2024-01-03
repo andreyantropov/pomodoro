@@ -1,0 +1,10 @@
+.tomatoComponent {
+    padding: 24px;
+    background-color: var(--grey-light);
+}
+
+.tomatoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

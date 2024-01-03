@@ -12,7 +12,7 @@ export function Statistics() {
       <div className={styles.container}>
         <Title />
         <div>
-          <div>
+          <div className={styles.mainStats}>
             <Time />
             <Tomato />
           </div>
