@@ -1,14 +1,25 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styles from './metriclist.module.css';
+import { Icons } from '../../../enums/Icons';
+import { MetricItem } from './MetricItem';
 
 interface MetricListProps {
-  children?: ReactNode;
+  metrics: Metric[];
 }
 
-export function MetricList({ children }: MetricListProps) {
+interface Metric {
+  id: string;
+  title: string;
+  stat: string;
+  icon: Icons;
+}
+
+export function MetricList({ metrics }: MetricListProps) {
   return (
     <ul className={styles.metricList}>
-      {children}
+      { metrics.map(({id, title, stat, icon}) => (
+        <MetricItem key={id} id={id} title={title} stat={stat} icon={icon} />
+      )) }
     </ul>
   );
 }
