@@ -27,6 +27,44 @@ export function Interval() {
         value={selectedOption}
         onChange={option => handleChange(option)}
         options={options}
+        styles={
+          {
+            control: (base, props) => ({
+              ...base,
+              padding: '10px 15px',
+              border: props.isFocused ? 'none' : '#f4f4f4',
+              borderRadius: '0px',
+              outline: 'none',
+              minWidth: '370px',
+              backgroundColor: '#f4f4f4',
+            }),
+            indicatorSeparator: (base, props) => ({
+              ...base,
+              display: 'none',
+            }),
+            menu: (base, props) => ({
+              ...base,
+              top: '50px',
+              padding: '0px',
+              borderRadius: '0px',
+              backgroundColor: '#f4f4f4',
+            }),
+            option: (base, props) => ({
+              ...base,
+              padding: '15px 20px',
+              fontSize: '16px',
+              fontWeight: '400',
+              color: '#333',
+              backgroundColor: props.isFocused ? '#c4c4c4' : '#f4f4f4',
+            }),
+            singleValue: (base, props) => ({
+              ...base,
+              fontSize: '16px',
+              fontWeight: '400',
+              color: '#333',
+            }),
+          }
+        }
     />
   );
 }
