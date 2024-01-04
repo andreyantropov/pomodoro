@@ -11,4 +11,5 @@ export enum Icons {
     Focus = 'focus',
     Clock = 'clock',
     Stop = 'stop',
+    Close = 'close',
 }

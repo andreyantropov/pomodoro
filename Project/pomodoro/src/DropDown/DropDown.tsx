@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './dropdown.module.css';
 import ReactDOM from 'react-dom';
 
-interface IDropDownProps {
+interface DropDownProps {
   button: React.ReactNode;
   children: React.ReactNode;
   isOpen?: boolean;
@@ -12,7 +12,7 @@ interface IDropDownProps {
 
 const noop = () => {};
 
-export function DropDown({ button, children, isOpen, onOpen = noop, onClose = noop, }: IDropDownProps) {
+export function DropDown({ button, children, isOpen, onOpen = noop, onClose = noop }: DropDownProps) {
   const [isDropDownOpen, setIsDropdownOpen] = React.useState(isOpen);
   React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
   React.useEffect(() => isDropDownOpen ? onOpen() : onClose(), [isOpen]);

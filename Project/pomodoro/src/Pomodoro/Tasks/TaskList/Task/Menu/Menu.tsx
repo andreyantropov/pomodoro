@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './menu.module.css';
 import { DropDown } from '../../../../../DropDown';
 import { generateId } from '../../../../../utils/generateRandomIndex';
@@ -8,6 +8,7 @@ import { Icons } from '../../../../../enums/Icons';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../../store/store';
 import { Task } from '../../../../../interfaces/task';
+import { Confirm } from '../../../../../Confirm';
 
 interface MenuProps {
   task: Task;
@@ -15,6 +16,7 @@ interface MenuProps {
 
 export function Menu({ task }: MenuProps) {
   const { dispatch } = useStoreon<State, Events>();
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const menuItems = [
     {
@@ -39,7 +41,7 @@ export function Menu({ task }: MenuProps) {
       icon: Icons.Delete,
       text: 'Удалить',
       isDisabled: false,
-      OnClick: () => dispatch('tasks/delete', task),
+      OnClick: () => { setIsConfirmOpen(true) },
     },
   ].map(generateId);
 
@@ -56,6 +58,7 @@ export function Menu({ task }: MenuProps) {
           <MenuItemList items={menuItems} />
         </div>
       </DropDown>
+      <Confirm isOpen={isConfirmOpen} title='Удалить задачу?' confirmBtnText='Удалить' onConfirm={ () => dispatch('tasks/delete', task) } onCancel={ () => setIsConfirmOpen(false) } />
     </div>
   );
 }

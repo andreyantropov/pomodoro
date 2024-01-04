@@ -13,6 +13,7 @@ import { ArrowIcon } from './ArrowIcon';
 import { FocusIcon } from './FocusIcon';
 import { ClockIcon } from './ClockIcon';
 import { StopIcon } from './StopIcon';
+import { CloseIcon } from './CloseIcon';
 
 interface IconProps {
   name: Icons;
@@ -47,6 +48,8 @@ export function Icon({ name, size, className }: IconProps) {
         return <ClockIcon size={size} className={className} />;
       case Icons.Stop:
         return <StopIcon size={size} className={className} />;
+      case Icons.Close:
+        return <CloseIcon size={size} className={className} />;
       default:
         return <div></div>;
     }

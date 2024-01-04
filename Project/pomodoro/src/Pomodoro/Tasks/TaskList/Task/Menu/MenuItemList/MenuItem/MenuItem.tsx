@@ -25,7 +25,6 @@ export function MenuItem({ id, icon, text, isDisabled = false, OnClick }: Item) 
         <Icon name={icon} />
         {text}
       </li>
-      
     </React.Fragment>
   );
 }
