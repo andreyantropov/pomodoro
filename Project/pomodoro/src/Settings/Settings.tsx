@@ -2,6 +2,8 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './settings.module.css';
 import { useStoreon } from 'storeon/react';
 import { Events, State } from '../store/store';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Settings() {
   const { dispatch, settings } = useStoreon<State, Events>('settings');
@@ -29,6 +31,8 @@ export function Settings() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     dispatch('settings/update', { tomato: tomatoTime * 60_000, shortBreak: shortBreakTime * 60_000, longBreak: longBreakTime * 60_000, additionalTime: additionalTime * 60_000 });
+    
+    toast("Настройки успешно сохранены");
   }
 
   function handleDefault() {
@@ -69,6 +73,15 @@ export function Settings() {
           </div>
         </form>
       </div>
+      <ToastContainer
+        toastStyle={{ padding: "24px", fontSize: "20px", lineHeight: "18px", color: "#fff", backgroundColor: "#a8b64f" }}
+        position="top-right"
+        autoClose={5000}
+        draggable={false}
+        theme="colored"
+        hideProgressBar
+        closeOnClick
+      />
     </section>
   );
 }
