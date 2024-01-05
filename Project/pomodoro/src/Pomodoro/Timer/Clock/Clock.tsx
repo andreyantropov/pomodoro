@@ -5,6 +5,8 @@ import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
 import { PlusBtn } from './PlusBtn';
 import classNames from 'classnames';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ClockProps {
   timer: Timer;
@@ -20,8 +22,18 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
     let interval: NodeJS.Timeout;
 
     if (timer.isRunning) {
-      interval = setInterval(() => {
-        dispatch('timer/time/set', timer.time - 1000);
+      interval = setInterval(() => {        
+        if (timer.time ) {
+          dispatch('timer/time/set', timer.time - 1000);
+        } else {
+          clearInterval(interval);
+
+          if (timer.status === 'in progress') {
+            notification("Вы отлично поработали! Пора отдохнуть!");
+          } else if (timer.status === 'break') {
+            notification("Пора поработать!");
+          }  
+        }
       }, 1000);
     }
 
@@ -29,6 +41,11 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
       clearInterval(interval);
     };
   }, [timer]);
+
+  function notification(message: string) {
+    new Audio('audio/notification.wav').play();
+    toast(message);
+  }
 
   useEffect(() => {
     const min = Math.floor(timer.time / 60_000);
@@ -47,6 +64,15 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
     <div className={styles.clockComponent}>
       <span className={clockClasses}>{minutes}:{seconds}</span>
       <PlusBtn timer={timer} additionalTime={additionalTime} />
+      <ToastContainer
+        toastStyle={{ padding: "24px", fontSize: "20px", lineHeight: "18px", color: "#fff", backgroundColor: "#a8b64f" }}
+        position="top-right"
+        autoClose={5000}
+        draggable={false}
+        theme="colored"
+        hideProgressBar
+        closeOnClick
+      />
     </div>
   );
 }
