@@ -5,10 +5,10 @@ import { Events, State } from '../store/store';
 
 export function Settings() {
   const { dispatch, settings } = useStoreon<State, Events>('settings');
-  const [tomatoTime, setTomatoTime] = useState(settings.tomato);
-  const [shortBreakTime, setShortBreakTime] = useState(settings.shortBreak);
-  const [longBreakTime, setLongBreakTime] = useState(settings.longBreak);
-  const [additionalTime, setAdditionalTime] = useState(settings.additionalTime);
+  const [tomatoTime, setTomatoTime] = useState(settings.tomato / 60_000);
+  const [shortBreakTime, setShortBreakTime] = useState(settings.shortBreak / 60_000);
+  const [longBreakTime, setLongBreakTime] = useState(settings.longBreak / 60_000);
+  const [additionalTime, setAdditionalTime] = useState(settings.additionalTime / 60_000);
 
   function handleTomatoTimeChange(e: ChangeEvent<HTMLInputElement>) {
     setTomatoTime(Number(e.target.value));
@@ -28,7 +28,7 @@ export function Settings() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('settings/update', { tomato: tomatoTime, shortBreak: shortBreakTime, longBreak: longBreakTime, additionalTime: additionalTime });
+    dispatch('settings/update', { tomato: tomatoTime * 60_000, shortBreak: shortBreakTime * 60_000, longBreak: longBreakTime * 60_000, additionalTime: additionalTime * 60_000 });
   }
 
   function handleDefault() {
@@ -36,7 +36,7 @@ export function Settings() {
     setShortBreakTime(5);
     setLongBreakTime(15);
     setAdditionalTime(1);
-    dispatch('settings/update', { tomato: 25, shortBreak: 5, longBreak: 15, additionalTime: 1 });
+    dispatch('settings/update', { tomato: 25 * 60_000, shortBreak: 5 * 60_000, longBreak: 15 * 60_000, additionalTime: 1 * 60_000 });
   }
 
   return (

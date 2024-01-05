@@ -23,16 +23,10 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
 
     if (timer.isRunning) {
       interval = setInterval(() => {        
-        if (timer.time ) {
+        if (timer.time) {
           dispatch('timer/time/set', timer.time - 1000);
         } else {
           clearInterval(interval);
-
-          if (timer.status === 'in progress') {
-            notification("Вы отлично поработали! Пора отдохнуть!");
-          } else if (timer.status === 'break') {
-            notification("Пора поработать!");
-          }  
         }
       }, 1000);
     }
@@ -40,6 +34,16 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
     return () => {
       clearInterval(interval);
     };
+  }, [timer]);
+
+  useEffect(() => {
+    if (timer.time === 0) {
+      if (timer.status === 'in progress') {
+        notification("Вы отлично поработали! Пора отдохнуть!");
+      } else if (timer.status === 'break') {
+        notification("Пора поработать!");
+      }  
+    }
   }, [timer]);
 
   function notification(message: string) {

@@ -10,7 +10,7 @@ export interface SettingsEvents {
 }
 
 export const settingsModule: StoreonModule<SettingsState, SettingsEvents> = store => {
-    store.on('@init', () => ({ settings: { tomato: 25, shortBreak: 5, longBreak: 15, additionalTime: 1 } }));
+    store.on('@init', () => ({ settings: { tomato: 1_500_000, shortBreak: 300_000, longBreak: 900_000, additionalTime: 60_000 } }));
 
     store.on('settings/update', ({ settings }, newSettings) => {
         return { settings: newSettings };
