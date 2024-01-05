@@ -8,13 +8,14 @@ import { Icons } from '../../../../enums/Icons';
 
 interface PlusBtnProps {
   timer: Timer;
+  additionalTime?: number;
 }
 
-export function PlusBtn({ timer }: PlusBtnProps) {
+export function PlusBtn({ timer, additionalTime = 60_000 }: PlusBtnProps) {
   const { dispatch } = useStoreon<State, Events>();
 
   function handleClick() {
-    dispatch('timer/time/set', timer.time + 60_000);
+    dispatch('timer/time/set', timer.time + additionalTime);
   }
 
   return (

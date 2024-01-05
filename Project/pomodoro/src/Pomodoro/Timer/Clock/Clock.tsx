@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './clock.module.css';
-import { PlusIcon } from '../../../Icon/PlusIcon';
 import { Timer } from '../../../interfaces/timer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
@@ -9,9 +8,10 @@ import classNames from 'classnames';
 
 interface ClockProps {
   timer: Timer;
+  additionalTime?: number;
 }
 
-export function Clock({ timer }: ClockProps) {
+export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
   const { dispatch } = useStoreon<State, Events>();
   const [minutes, setMinutes] = useState('25');
   const [seconds, setSeconds] = useState('00');
@@ -46,7 +46,7 @@ export function Clock({ timer }: ClockProps) {
   return (
     <div className={styles.clockComponent}>
       <span className={clockClasses}>{minutes}:{seconds}</span>
-      <PlusBtn timer={timer} />
+      <PlusBtn timer={timer} additionalTime={additionalTime} />
     </div>
   );
 }

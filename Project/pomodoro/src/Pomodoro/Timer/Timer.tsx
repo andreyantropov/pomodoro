@@ -7,7 +7,7 @@ import { Clock } from './Clock';
 import { Buttons } from './Buttons';
 
 export function Timer() {
-  const { tasks, timer } = useStoreon<State, Events>('tasks', 'timer');
+  const { tasks, timer, settings } = useStoreon<State, Events>('tasks', 'timer', 'settings');
   const [ currentTask, setCurrentTask ] = useState(tasks[0]);
 
   useEffect(() => {
@@ -17,14 +17,14 @@ export function Timer() {
   return (
     <div className={styles.timerComponent}>
       <Title currentTask={currentTask} timer={timer} />
-      <Clock timer={timer} />
+      <Clock timer={timer} additionalTime={settings.additionalTime * 60_000} />
 
       <div className={styles.taskContainer}>
         <span className={styles.number}>Задача 1 - </span>
         <span className={styles.task}>{currentTask ? currentTask.text : 'Задача отсутствует'}</span>
       </div>
 
-      <Buttons timer={timer} currentTask={currentTask} />
+      <Buttons timer={timer} currentTask={currentTask} settings={settings} />
     </div>
   );
 }

@@ -5,18 +5,21 @@ import { State, Events } from '../../../store/store';
 import { Timer } from '../../../interfaces/timer';
 import { Task } from '../../../interfaces/task';
 import { Button } from './Button';
+import { PomodoroSettings } from '../../../interfaces/pomodoro-settings';
+import { Settings } from '../../../Settings';
 
 interface ButtonsProps {
   timer: Timer;
   currentTask?: Task;
+  settings: PomodoroSettings;
 }
 
-export function Buttons({ timer, currentTask }: ButtonsProps) {
+export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
   const { dispatch } = useStoreon<State, Events>();
 
   const handleStartClick = () => {
     dispatch('timer/status/set', 'in progress');
-    dispatch('timer/time/set', 1_500_000);
+    dispatch('timer/time/set', settings.tomato * 60_000);
     dispatch('timer/isrunning/set', true);
   }
 
@@ -30,13 +33,13 @@ export function Buttons({ timer, currentTask }: ButtonsProps) {
 
   const handleStopClick = () => {
     dispatch('timer/status/set', 'stop');
-    dispatch('timer/time/set', 1_500_000);
+    dispatch('timer/time/set', settings.tomato * 60_000);
     dispatch('timer/isrunning/set', false);
   }
 
   const handleSkipClick = () => {
     dispatch('timer/status/set', 'stop');
-    dispatch('timer/time/set', 1_500_000);
+    dispatch('timer/time/set', settings.tomato * 60_000);
     dispatch('timer/tomatoes/set', ++timer.tomatoes);
     dispatch('timer/isrunning/set', false);
     if (currentTask) {
@@ -47,9 +50,9 @@ export function Buttons({ timer, currentTask }: ButtonsProps) {
   const handleDoneClick = () => {
     dispatch('timer/status/set', 'break');
     if (timer.tomatoes % 4) {
-      dispatch('timer/time/set', 300_000);
+      dispatch('timer/time/set', settings.shortBreak * 60_000);
     } else {
-      dispatch('timer/time/set', 1_200_000);
+      dispatch('timer/time/set', settings.longBreak * 60_000);
     }
     dispatch('timer/isrunning/set', true);
   }
