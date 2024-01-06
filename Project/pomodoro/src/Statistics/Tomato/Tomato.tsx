@@ -10,8 +10,18 @@ export function Tomato({ tomatoes }: TomatoProps) {
     <div className={styles.tomatoComponent}>
       <div className={styles.tomatoes}>
         { tomatoes ? 
-          (<span>{tomatoes}</span>) : 
-          (<img src="img/smiling-tomato.svg" alt="" aria-hidden />
+          (
+            <div className={styles.countContainer}>
+              <img src="img/tomato.svg" alt="" aria-hidden />
+              <span className={styles.count}>x{tomatoes}</span>
+            </div>
+          ) : 
+          (<img src="img/smiling-tomato.svg" alt="" aria-hidden />)
+        }
+        { tomatoes && (
+          <div className={styles.captionContainer}>
+            <span className={styles.caption}>{tomatoes} помидора</span>
+          </div>
         )}
       </div>
     </div>

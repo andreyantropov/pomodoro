@@ -21,10 +21,14 @@ export function Time({ time }: TimeProps) {
   return (
     <div className={styles.timeComponent}>
       <h4 className={styles.title}>Суббота</h4>
-      <span className={styles.time}>
+      <span className={styles.description}>
         {hours === '0' && minutes === '0' && "Нет данных"}
-        {hours !== '0' && hours + 'ч'}
-        {minutes !== '0' && minutes + 'м'}
+        {hours !== '0' || minutes !== '0' && (
+          <>
+            Вы работали над задачами в течение
+            <span className={styles.time}> {hours}ч {minutes}м</span>
+          </>
+        )}
       </span>
     </div>
   );

@@ -1,10 +1,38 @@
 .tomatoComponent {
-    padding: 24px;
     background-color: var(--grey-light);
 }
 
 .tomatoes {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+}
+
+.countContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.count {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 33px;
+    color: var(--grey);
+}
+
+.captionContainer {
+    padding: 5px;
+    width: 100%;
+    background-color: var(--primary);
+    text-align: center;
+}
+
+.caption {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 33px;
+    color: var(--white);
 }

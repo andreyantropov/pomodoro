@@ -12,7 +12,14 @@
     line-height: 33px;
 }
 
-.time {
+.description {
     font-size: 16px;
     line-height: 28px;
+}
+
+.time {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    color: var(--primary);
 }

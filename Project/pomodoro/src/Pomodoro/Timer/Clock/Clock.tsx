@@ -78,7 +78,7 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
     return () => {
       clearInterval(interval);
     };
-  }, [timer]);
+  }, [timer, stats]);
 
   useEffect(() => {
     const min = Math.floor(timer.time / 60_000);
