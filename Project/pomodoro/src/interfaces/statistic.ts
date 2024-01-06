@@ -1,6 +1,7 @@
 export interface Statistic {
-    date: string;
+    date: number;
     tomatoes: number;
+    plannedTomatoes: number;
     pauses: number;
     workedTime: number;
     pausedTime: number;

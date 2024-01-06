@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './buttons.module.css';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
@@ -14,7 +14,13 @@ interface ButtonsProps {
 }
 
 export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
-  const { dispatch } = useStoreon<State, Events>();
+  const { dispatch, stats } = useStoreon<State, Events>('stats');
+  const [currentDate, setCurrentDate] = useState(new Date().getDate());
+  const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
+
+  useEffect(() => {
+    setStat(stats.find(stat => stat.date === currentDate));
+  }, [stats]);
 
   const handleStartClick = () => {
     dispatch('timer/status/set', 'in progress');
@@ -24,6 +30,10 @@ export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
 
   const handlePauseClick = () => {
     dispatch('timer/isrunning/set', false);
+
+    if (stat) {
+      dispatch('stats/update', {...stat, pauses: ++stat.pauses});
+    }
   }
 
   const handleContinueClick = () => {
@@ -54,6 +64,10 @@ export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
       dispatch('timer/time/set', settings.longBreak);
     }
     dispatch('timer/isrunning/set', true);
+
+    if (stat) {
+      dispatch('stats/update', {...stat, tomatoes: ++stat.tomatoes});
+    }
   }
 
   return (

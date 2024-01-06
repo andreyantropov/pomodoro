@@ -1,5 +1,4 @@
 import { StoreonModule } from "storeon";
-import { Task } from "../interfaces/task";
 import { Statistic } from "../interfaces/statistic";
 
 export interface StatisticsState {

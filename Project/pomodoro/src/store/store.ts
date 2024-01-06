@@ -9,4 +9,4 @@ export interface State extends TasksState, TimerState, StatisticsState, Settings
 
 export interface Events extends TasksEvents, TimerEvents, StatisticsEvents, SettingsEvents { }
   
-export const store = createStoreon<State, Events>([tasksModule, timerModule, statisticsModule, settingsModule, persistState(['tasks', 'statistics', 'settings'])]);
+export const store = createStoreon<State, Events>([tasksModule, timerModule, statisticsModule, settingsModule, persistState(['tasks', 'stats', 'settings'])]);

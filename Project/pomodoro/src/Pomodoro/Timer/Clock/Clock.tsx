@@ -14,9 +14,15 @@ interface ClockProps {
 }
 
 export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
-  const { dispatch } = useStoreon<State, Events>();
+  const { dispatch, stats } = useStoreon<State, Events>('stats');
   const [minutes, setMinutes] = useState('25');
   const [seconds, setSeconds] = useState('00');
+  const [currentDate, setCurrentDate] = useState(new Date().getDate());
+  const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
+
+  useEffect(() => {
+    setStat(stats.find(stat => stat.date === currentDate));
+  }, [stats]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -25,6 +31,9 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
       interval = setInterval(() => {        
         if (timer.time) {
           dispatch('timer/time/set', timer.time - 1000);
+          if (stat) {
+            dispatch('stats/update', {...stat, workedTime: stat.workedTime + 1000});
+          }
         } else {
           clearInterval(interval);
         }
@@ -50,6 +59,26 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
     new Audio('audio/notification.wav').play();
     toast(message);
   }
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (!timer.isRunning && timer.status !== 'stop') {
+      interval = setInterval(() => {        
+        if (timer.time) {
+          if (stat) {
+            dispatch('stats/update', {...stat, pausedTime: stat.pausedTime + 1000});
+          }
+        } else {
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timer]);
 
   useEffect(() => {
     const min = Math.floor(timer.time / 60_000);
