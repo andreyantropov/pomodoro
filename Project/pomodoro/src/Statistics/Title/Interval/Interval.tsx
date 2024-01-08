@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './interval.module.css';
 import Select, { ActionMeta } from 'react-select';
+import { useStoreon } from 'storeon/react';
+import { Events, State } from '../../../store/store';
 
 type Option = {
   value: string;
@@ -16,10 +18,12 @@ const options: Option[] = [
 ];
 
 export function Interval() {
+  const { dispatch } = useStoreon<State, Events>();
   const [selectedOption, setSelectedOption] = useState<SingleValue<Option> | null>(options[0]);
 
   const handleChange = (option: SingleValue<Option> | null) => {
     setSelectedOption(option);
+    dispatch('statistics/selectedWeek/update', Number(option?.value));
   };
 
   return (

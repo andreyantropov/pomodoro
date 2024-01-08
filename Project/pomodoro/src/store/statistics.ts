@@ -3,20 +3,31 @@ import { Statistic } from "../interfaces/statistic";
 
 export interface StatisticsState {
     stats: Statistic[];
+    selectedWeek: number;
+    selectedDate: number;
 }
 
 export interface StatisticsEvents {
-    'stats/add': Statistic;
-    'stats/update': Statistic;
+    'statistics/stats/add': Statistic;
+    'statistics/stats/update': Statistic;
+    'statistics/selectedWeek/update': number;
+    'statistics/selectedDate/update': number;
 }
 
 export const statisticsModule: StoreonModule<StatisticsState, StatisticsEvents> = store => {
-    store.on('@init', () => ({ stats: [] }));
+    store.on('@init', () => ({ stats: [], selectedWeek: 0, selectedDate: new Date().getDate() }));
 
-    store.on('stats/add', ({ stats }, newStat) => {
+    store.on('statistics/stats/add', ({ stats }, newStat) => {
         return { stats: stats.concat([newStat]) };
     });
-    store.on('stats/update', ({ stats }, updStat) => {
+    store.on('statistics/stats/update', ({ stats }, updStat) => {
         return { stats: stats.map((stat) => stat.date === updStat.date ? updStat : stat) };
+    });
+
+    store.on('statistics/selectedWeek/update', ({ selectedWeek }, updWeek) => {
+        return { selectedWeek: updWeek };
+    });
+    store.on('statistics/selectedDate/update', ({ selectedDate }, updDate) => {
+        return { selectedDate: updDate };
     });
 }

@@ -11,8 +11,9 @@ import {
   ChartOptions,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
 import { Statistic } from '../../interfaces/statistic';
+import { useStoreon } from 'storeon/react';
+import { Events, State } from '../../store/store';
 
 ChartJS.register(
   CategoryScale,
@@ -57,29 +58,30 @@ interface PlotProps {
 }
 
 export function Plot({ statistics }: PlotProps) {
-  const [selectedStatistics, setSelectedStatistics] = useState( getWeeklyStatistics(statistics) );
+  const { selectedWeek } = useStoreon<State, Events>('selectedWeek');
+  const [selectedStatistics, setSelectedStatistics] = useState( getWeeklyStatistics(statistics, selectedWeek) );
 
-  const data = {
+  let data = {
     labels,
     datasets: [
       {
         label: '',
-        data: labels.map((label, index) => selectedStatistics[index].tomatoes),
+        data: labels.map((label, index) => selectedStatistics.length ? selectedStatistics[index].tomatoes : new Array(7).fill(0)),
         backgroundColor: '#ea8a79',
       },
     ],
   };
 
   useEffect(() => {
-    setSelectedStatistics( getWeeklyStatistics(statistics) );
-  }, [statistics]);
+    setSelectedStatistics( getWeeklyStatistics(statistics, selectedWeek) );
+  }, [statistics, selectedWeek]);
 
-  function getWeeklyStatistics(data: Statistic[]): Statistic[] {
+  function getWeeklyStatistics(data: Statistic[], weekOffset: number): Statistic[] {
     const today = new Date();
     const currentDayOfWeek = today.getDay() !== 0 ? today.getDay() - 1 : 6;
     const daysToMonday = (currentDayOfWeek + 6) % 7;
-    const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysToMonday);
-    const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6);
+    const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysToMonday - weekOffset * 7);
+    const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6 - weekOffset * 7);
     const result: Statistic[] = [];
     
     for (let currentDate = monday; currentDate <= sunday; currentDate.setDate(currentDate.getDate() + 1)) {
@@ -88,7 +90,6 @@ export function Plot({ statistics }: PlotProps) {
       const currentData: Statistic = foundData ? { ...foundData, date: currentDateString, } : { date: currentDateString, tomatoes: 0, plannedTomatoes: 0, pauses: 0, workedTime: 0, pausedTime: 0 };
       result.push(currentData);
     }
-    
     return result;
   }
 

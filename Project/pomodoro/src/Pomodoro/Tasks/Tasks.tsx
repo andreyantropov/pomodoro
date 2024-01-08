@@ -21,7 +21,7 @@ export function Tasks() {
       plannedTomatoes += task.tomatoes;
     }
     if (stat) {
-      dispatch('stats/update', {...stat, plannedTomatoes: plannedTomatoes});
+      dispatch('statistics/stats/update', {...stat, plannedTomatoes: plannedTomatoes});
     }
   }, [tasks]);
   

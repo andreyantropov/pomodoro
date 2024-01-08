@@ -32,7 +32,7 @@ export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
     dispatch('timer/isrunning/set', false);
 
     if (stat) {
-      dispatch('stats/update', {...stat, pauses: ++stat.pauses});
+      dispatch('statistics/stats/update', {...stat, pauses: ++stat.pauses});
     }
   }
 
@@ -66,7 +66,7 @@ export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
     dispatch('timer/isrunning/set', true);
 
     if (stat) {
-      dispatch('stats/update', {...stat, tomatoes: ++stat.tomatoes});
+      dispatch('statistics/stats/update', {...stat, tomatoes: ++stat.tomatoes});
     }
   }
 

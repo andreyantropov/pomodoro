@@ -11,7 +11,7 @@ export function Pomodoro() {
   const [currentDate, setCurrentDate] = useState(new Date().getDate());
 
   if (!stats.find(stat => stat.date === currentDate)) {
-    dispatch('stats/add', { date: currentDate, tomatoes: 0, plannedTomatoes: 0, pauses: 0, workedTime: 0, pausedTime: 0 });
+    dispatch('statistics/stats/add', { date: currentDate, tomatoes: 0, plannedTomatoes: 0, pauses: 0, workedTime: 0, pausedTime: 0 });
   }
 
   return (
