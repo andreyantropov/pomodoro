@@ -26,7 +26,7 @@ export function Statistics() {
             <Time time={stat?.workedTime} />
             <Tomato tomatoes={stat?.tomatoes} />
           </div>
-          <Plot />
+          <Plot statistics={stats} />
         </div>
         <Metrics statistics={stat} />
       </div>
