@@ -68,6 +68,7 @@ export function Plot({ statistics }: PlotProps) {
       {
         label: '',
         data: labels.map((label, index) => selectedStatistics.length ? selectedStatistics[index].tomatoes : new Array(7).fill(0)),
+        minBarLength: 5,
         backgroundColor: '#ea8a79',
       },
     ],
