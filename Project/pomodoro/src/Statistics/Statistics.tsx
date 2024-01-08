@@ -13,7 +13,7 @@ export function Statistics() {
   const [stat, setStat] = useState(stats.find(stat => stat.date === selectedDate));
 
   useEffect(() => {
-    setStat(stats.find(stat => stat.date === selectedDate) ? stats.find(stat => stat.date === selectedDate) : { date: selectedDate, tomatoes: 0, plannedTomatoes: 0, pauses: 0, workedTime: 0, pausedTime: 0 });
+    setStat(stats.find(stat => stat.date === selectedDate));
   }, [stats, selectedDate]);
 
   return (

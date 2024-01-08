@@ -22,8 +22,8 @@ export function Time({ time }: TimeProps) {
     <div className={styles.timeComponent}>
       <h4 className={styles.title}>Суббота</h4>
       <span className={styles.description}>
-        {hours === '0' && minutes === '0' && "Нет данных"}
-        {hours !== '0' || minutes !== '0' && (
+        {!time && "Нет данных"}
+        {time && (
           <>
             Вы работали над задачами в течение
             <span className={styles.time}> {hours}ч {minutes}м</span>
