@@ -80,7 +80,7 @@ export function Plot({ statistics }: PlotProps) {
 
   function getWeeklyStatistics(data: Statistic[], weekOffset: number): Statistic[] {
     const today = new Date();
-    const currentDayOfWeek = today.getDay() !== 0 ? today.getDay() - 1 : 6;
+    const currentDayOfWeek = today.getDay();
     const daysToMonday = (currentDayOfWeek + 6) % 7;
     const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysToMonday - weekOffset * 7);
     const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6 - weekOffset * 7);
