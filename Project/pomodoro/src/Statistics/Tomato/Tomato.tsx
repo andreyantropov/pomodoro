@@ -16,7 +16,11 @@ export function Tomato({ tomatoes }: TomatoProps) {
               <span className={styles.count}>x{tomatoes}</span>
             </div>
           ) : 
-          (<img src="img/smiling-tomato.svg" alt="" aria-hidden />)
+          (
+            <div className={styles.countContainer}>
+              <img src="img/smiling-tomato.svg" alt="" aria-hidden />
+            </div>
+          )
         }
         { tomatoes && (
           <div className={styles.captionContainer}>

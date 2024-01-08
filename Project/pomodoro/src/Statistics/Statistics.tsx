@@ -19,15 +19,17 @@ export function Statistics() {
   return (
     <section>
       <div className={styles.container}>
-        <Title />
-        <div className={styles.statistics}>
-          <div className={styles.mainStats}>
-            <Time time={stat?.workedTime} />
-            <Tomato tomatoes={stat?.tomatoes} />
+        <div className={styles.wrapper}>
+          <Title />
+          <div className={styles.statistics}>
+            <div className={styles.mainStats}>
+              <Time time={stat?.workedTime} />
+              <Tomato tomatoes={stat?.tomatoes} />
+            </div>
+            <Plot statistics={stats} />
           </div>
-          <Plot statistics={stats} />
+          <Metrics statistics={stat} />
         </div>
-        <Metrics statistics={stat} />
       </div>
     </section>
   );

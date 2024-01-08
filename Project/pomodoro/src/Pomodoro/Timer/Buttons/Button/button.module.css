@@ -1,6 +1,7 @@
 .primaryBtn {
     padding: 15px 50px;
     border: 2px solid var(--secondary);
+    width: calc((100% - 25px) / 2);
     font-size: 16px;
     font-weight: 500;
     line-height: 17px;
@@ -30,6 +31,7 @@
 .secondaryBtn {
     padding: 15px 50px;
     border: 2px solid var(--primary);
+    width: calc((100% - 25px) / 2);
     font-size: 16px;
     font-weight: 500;
     line-height: 17px;

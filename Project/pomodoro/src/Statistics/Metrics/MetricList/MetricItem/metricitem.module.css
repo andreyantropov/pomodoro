@@ -1,8 +1,8 @@
 .metricItemComponent {
     display: flex;
     justify-content: space-between;
-    flex-grow: 1;
     padding: 25px;
+    width: calc((100% - 32px * 2) / 3);
     background-color: var(--grey-light);
 }
 

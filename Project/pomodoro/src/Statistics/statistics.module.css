@@ -4,6 +4,10 @@
     max-width: 1320px;
 }
 
+.wrapper {
+    padding-bottom: 50px;
+}
+
 .statistics {
     display: flex;
     gap: 32px;
