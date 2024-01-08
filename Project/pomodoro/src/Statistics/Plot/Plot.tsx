@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './plot.module.css';
 import {
   Chart as ChartJS,
@@ -10,7 +10,7 @@ import {
   Legend,
   ChartOptions,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Bar, getElementAtEvent } from 'react-chartjs-2';
 import { Statistic } from '../../interfaces/statistic';
 import { useStoreon } from 'storeon/react';
 import { Events, State } from '../../store/store';
@@ -58,8 +58,9 @@ interface PlotProps {
 }
 
 export function Plot({ statistics }: PlotProps) {
-  const { selectedWeek } = useStoreon<State, Events>('selectedWeek');
-  const [selectedStatistics, setSelectedStatistics] = useState( getWeeklyStatistics(statistics, selectedWeek) );
+  const { dispatch, selectedWeek } = useStoreon<State, Events>('selectedWeek');
+  const [selectedStatistics, setSelectedStatistics] = useState(getWeeklyStatistics(statistics, selectedWeek));
+  const chartRef = useRef();
 
   let data = {
     labels,
@@ -73,7 +74,7 @@ export function Plot({ statistics }: PlotProps) {
   };
 
   useEffect(() => {
-    setSelectedStatistics( getWeeklyStatistics(statistics, selectedWeek) );
+    setSelectedStatistics(getWeeklyStatistics(statistics, selectedWeek));
   }, [statistics, selectedWeek]);
 
   function getWeeklyStatistics(data: Statistic[], weekOffset: number): Statistic[] {
@@ -83,7 +84,7 @@ export function Plot({ statistics }: PlotProps) {
     const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysToMonday - weekOffset * 7);
     const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6 - weekOffset * 7);
     const result: Statistic[] = [];
-    
+
     for (let currentDate = monday; currentDate <= sunday; currentDate.setDate(currentDate.getDate() + 1)) {
       const currentDateString = currentDate.getDate();
       const foundData = data.find(item => item.date === currentDateString);
@@ -93,9 +94,19 @@ export function Plot({ statistics }: PlotProps) {
     return result;
   }
 
+  const onClick = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    if (chartRef.current && event) {
+      const elem = getElementAtEvent(chartRef.current, event);
+      if (elem[0]) {
+        dispatch('statistics/selectedDate/update', selectedStatistics[elem[0].index].date);
+      }
+      console.log( getElementAtEvent(chartRef.current, event) );
+    }
+  }
+
   return (
     <div className={styles.plotComponent}>
-      <Bar options={options} data={data} />
+      <Bar options={options} data={data} ref={chartRef} onClick={onClick} />
     </div>
   );
 }
