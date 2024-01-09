@@ -1,4 +1,4 @@
-export interface PomodoroSettings {
+export interface Settings {
     tomato: number;
     shortBreak: number;
     longBreak: number;

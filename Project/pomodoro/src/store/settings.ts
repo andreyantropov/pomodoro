@@ -1,12 +1,12 @@
 import { StoreonModule } from "storeon";
-import { PomodoroSettings } from "../interfaces/pomodoro-settings";
+import { Settings } from "../interfaces/settings";
 
 export interface SettingsState {
-    settings: PomodoroSettings;
+    settings: Settings;
 }
 
 export interface SettingsEvents {
-    'settings/update': PomodoroSettings;
+    'settings/update': Settings;
 }
 
 export const settingsModule: StoreonModule<SettingsState, SettingsEvents> = store => {
