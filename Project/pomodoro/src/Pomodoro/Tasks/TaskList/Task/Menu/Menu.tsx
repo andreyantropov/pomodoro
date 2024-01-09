@@ -58,7 +58,7 @@ export function Menu({ task }: MenuProps) {
           <MenuItemList items={menuItems} />
         </div>
       </DropDown>
-      <Confirm isOpen={isConfirmOpen} title='Удалить задачу?' confirmBtnText='Удалить' onConfirm={ () => dispatch('tasks/delete', task) } onCancel={ () => setIsConfirmOpen(false) } />
+      <Confirm isOpen={isConfirmOpen} title='Удалить задачу?' confirmBtnText='Удалить' onConfirm={ () => dispatch('tasks/delete', task) } onCancel={ () => setIsConfirmOpen(false) } onOutsideClick={ () => setIsConfirmOpen(false) } />
     </div>
   );
 }
