@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './clock.module.css';
-import { Timer } from '../../../interfaces/timer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
 import { PlusBtn } from './PlusBtn';
@@ -9,13 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCurrentDate } from '../../../hooks/useCurrentDate';
 
-interface ClockProps {
-  timer: Timer;
-  additionalTime?: number;
-}
-
-export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
-  const { dispatch, stats, settings } = useStoreon<State, Events>('stats', 'settings');
+export function Clock() {
+  const { dispatch, timer, stats, settings } = useStoreon<State, Events>('stats', 'settings');
   const [minutes, setMinutes] = useState((settings.tomato / 60_000).toString());
   const [seconds, setSeconds] = useState('00');
   const [currentDate] = useCurrentDate();
@@ -103,7 +97,7 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
   return (
     <div className={styles.clockComponent}>
       <span className={clockClasses}>{minutes}:{seconds}</span>
-      <PlusBtn timer={timer} additionalTime={additionalTime} />
+      <PlusBtn timer={timer} additionalTime={settings.additionalTime} />
       <ToastContainer
         toastStyle={{ padding: "24px", fontSize: "20px", lineHeight: "18px", color: "#fff", backgroundColor: "#a8b64f" }}
         position="top-right"

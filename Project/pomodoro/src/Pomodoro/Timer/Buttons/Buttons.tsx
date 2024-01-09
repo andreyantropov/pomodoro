@@ -2,20 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styles from './buttons.module.css';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
-import { Timer } from '../../../interfaces/timer';
-import { Task } from '../../../interfaces/task';
 import { Button } from './Button';
-import { PomodoroSettings } from '../../../interfaces/pomodoro-settings';
 import { useCurrentDate } from '../../../hooks/useCurrentDate';
+import { useCurrentTask } from '../../../hooks/useCurrentTask';
 
-interface ButtonsProps {
-  timer: Timer;
-  currentTask?: Task;
-  settings: PomodoroSettings;
-}
-
-export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
-  const { dispatch, stats } = useStoreon<State, Events>('stats');
+export function Buttons() {
+  const { dispatch, timer, stats, settings } = useStoreon<State, Events>('timer', 'stats', 'settings');
+  const [ currentTask ] = useCurrentTask();
   const [currentDate] = useCurrentDate();
   const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
 

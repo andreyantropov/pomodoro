@@ -1,15 +1,14 @@
 import React from 'react';
 import styles from './title.module.css';
-import { Task } from '../../../interfaces/task';
-import { Timer } from '../../../interfaces/timer';
 import classNames from 'classnames';
+import { useCurrentTask } from '../../../hooks/useCurrentTask';
+import { useStoreon } from 'storeon/react';
+import { Events, State } from '../../../store/store';
 
-interface TitleProps {
-  currentTask?: Task;
-  timer: Timer;
-}
-
-export function Title({ currentTask, timer }: TitleProps) {
+export function Title() {
+  const { timer } = useStoreon<State, Events>('timer');
+  const [ currentTask ] = useCurrentTask();
+  
   const titleContainerClasses = classNames(
     styles.titleContainer,
     { [styles.inProgress]: timer.status === 'in progress' },
