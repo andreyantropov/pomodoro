@@ -6,6 +6,7 @@ import { Timer } from '../../../interfaces/timer';
 import { Task } from '../../../interfaces/task';
 import { Button } from './Button';
 import { PomodoroSettings } from '../../../interfaces/pomodoro-settings';
+import { useCurrentDate } from '../../../hooks/useCurrentDate';
 
 interface ButtonsProps {
   timer: Timer;
@@ -15,7 +16,7 @@ interface ButtonsProps {
 
 export function Buttons({ timer, currentTask, settings }: ButtonsProps) {
   const { dispatch, stats } = useStoreon<State, Events>('stats');
-  const [currentDate, setCurrentDate] = useState(new Date().getDate());
+  const [currentDate] = useCurrentDate();
   const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
 
   useEffect(() => {

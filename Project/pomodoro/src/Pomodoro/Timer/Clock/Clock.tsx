@@ -7,6 +7,7 @@ import { PlusBtn } from './PlusBtn';
 import classNames from 'classnames';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useCurrentDate } from '../../../hooks/useCurrentDate';
 
 interface ClockProps {
   timer: Timer;
@@ -17,7 +18,7 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
   const { dispatch, stats, settings } = useStoreon<State, Events>('stats', 'settings');
   const [minutes, setMinutes] = useState((settings.tomato / 60_000).toString());
   const [seconds, setSeconds] = useState('00');
-  const [currentDate, setCurrentDate] = useState(new Date().getDate());
+  const [currentDate] = useCurrentDate();
   const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
 
   useEffect(() => {

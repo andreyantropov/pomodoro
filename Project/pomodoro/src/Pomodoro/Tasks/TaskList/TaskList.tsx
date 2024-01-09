@@ -3,10 +3,11 @@ import styles from './tasklist.module.css';
 import { TaskItem } from './Task/TaskItem';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
+import { useCurrentDate } from '../../../hooks/useCurrentDate';
 
 export function TaskList() {
   const { dispatch, tasks, stats } = useStoreon<State, Events>('tasks', 'stats');
-  const [currentDate, setCurrentDate] = useState(new Date().getDate());
+  const [currentDate] = useCurrentDate();
   const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
 
   useEffect(() => {
