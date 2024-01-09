@@ -3,16 +3,14 @@ import styles from './metrics.module.css';
 import { MetricList } from './MetricList';
 import { Icons } from '../../enums/Icons';
 import { generateId } from '../../utils/generateRandomIndex';
-import { Statistic } from '../../interfaces/statistic';
+import { useSelectedStat } from '../../hooks/useSelectedStat';
 
-interface MetricsProps {
-  statistics?: Statistic;
-}
-
-export function Metrics({ statistics }: MetricsProps) {
-  const focus = statistics ? ((statistics.tomatoes / statistics.plannedTomatoes) * 100).toString() + '%' : '0%';
-  const pausedTime = statistics ? Math.floor(statistics.pausedTime / 60_000).toString() + 'м' : '0м';
-  const pauses = statistics ? statistics.pauses.toString() : '0';
+export function Metrics() {
+  const [ selectedStat ] = useSelectedStat();
+  
+  const focus = selectedStat ? ((selectedStat.tomatoes / selectedStat.plannedTomatoes) * 100).toString() + '%' : '0%';
+  const pausedTime = selectedStat ? Math.floor(selectedStat.pausedTime / 60_000).toString() + 'м' : '0м';
+  const pauses = selectedStat ? selectedStat.pauses.toString() : '0';
 
   const metricItems = [
     {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styles from './plot.module.css';
 import {
   Chart as ChartJS,
@@ -11,9 +11,9 @@ import {
   ChartOptions,
 } from 'chart.js';
 import { Bar, getElementAtEvent } from 'react-chartjs-2';
-import { Statistic } from '../../interfaces/statistic';
 import { useStoreon } from 'storeon/react';
 import { Events, State } from '../../store/store';
+import { useWeekStat } from '../../hooks/useWeekStat';
 
 ChartJS.register(
   CategoryScale,
@@ -53,61 +53,36 @@ const options: ChartOptions<"bar"> = {
 
 const labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
-interface PlotProps {
-  statistics: Statistic[];
-}
-
-export function Plot({ statistics }: PlotProps) {
-  const { dispatch, selectedWeek } = useStoreon<State, Events>('selectedWeek');
-  const [selectedStatistics, setSelectedStatistics] = useState(getWeeklyStatistics(statistics, selectedWeek));
-  const chartRef = useRef();
+export function Plot() {
+  const { dispatch, stats, selectedWeek } = useStoreon<State, Events>('stats', 'selectedWeek');
+  const [ weekStat ] = useWeekStat();
+  const ref = useRef();
 
   let data = {
     labels,
     datasets: [
       {
         label: '',
-        data: labels.map((label, index) => selectedStatistics.length ? selectedStatistics[index].tomatoes : new Array(7).fill(0)),
+        data: labels.map((label, index) => weekStat.length ? weekStat[index].tomatoes : new Array(7).fill(0)),
         minBarLength: 5,
         backgroundColor: '#ea8a79',
       },
     ],
   };
 
-  useEffect(() => {
-    setSelectedStatistics(getWeeklyStatistics(statistics, selectedWeek));
-  }, [statistics, selectedWeek]);
-
-  function getWeeklyStatistics(data: Statistic[], weekOffset: number): Statistic[] {
-    const today = new Date();
-    const currentDayOfWeek = today.getDay();
-    const daysToMonday = (currentDayOfWeek + 6) % 7;
-    const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysToMonday - weekOffset * 7);
-    const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6 - weekOffset * 7);
-    const result: Statistic[] = [];
-
-    for (let currentDate = monday; currentDate <= sunday; currentDate.setDate(currentDate.getDate() + 1)) {
-      const currentDateString = currentDate.getDate();
-      const foundData = data.find(item => item.date === currentDateString);
-      const currentData: Statistic = foundData ? { ...foundData, date: currentDateString, } : { date: currentDateString, tomatoes: 0, plannedTomatoes: 0, pauses: 0, workedTime: 0, pausedTime: 0 };
-      result.push(currentData);
-    }
-    return result;
-  }
-
   const onClick = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    if (chartRef.current && event) {
-      const elem = getElementAtEvent(chartRef.current, event);
+    if (ref.current && event) {
+      const elem = getElementAtEvent(ref.current, event);
       if (elem[0]) {
-        dispatch('statistics/selectedDate/update', selectedStatistics[elem[0].index].date);
+        dispatch('statistics/selectedDate/update', weekStat[elem[0].index].date);
       }
-      console.log( getElementAtEvent(chartRef.current, event) );
+      console.log( getElementAtEvent(ref.current, event) );
     }
   }
 
   return (
     <div className={styles.plotComponent}>
-      <Bar options={options} data={data} ref={chartRef} onClick={onClick} />
+      <Bar options={options} data={data} ref={ref} onClick={onClick} />
     </div>
   );
 }

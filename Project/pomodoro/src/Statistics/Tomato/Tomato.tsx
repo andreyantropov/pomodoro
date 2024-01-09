@@ -1,19 +1,18 @@
 import React from 'react';
 import styles from './tomato.module.css';
+import { useSelectedStat } from '../../hooks/useSelectedStat';
 
-interface TomatoProps {
-  tomatoes?: number;
-}
+export function Tomato() {
+  const [ selectedStat ] = useSelectedStat();
 
-export function Tomato({ tomatoes }: TomatoProps) {
   return (
     <div className={styles.tomatoComponent}>
       <div className={styles.tomatoes}>
-        { tomatoes ? 
+        { selectedStat ? 
           (
             <div className={styles.countContainer}>
               <img src="img/tomato.svg" alt="" aria-hidden />
-              <span className={styles.count}>x{tomatoes}</span>
+              <span className={styles.count}>x{selectedStat.tomatoes}</span>
             </div>
           ) : 
           (
@@ -22,9 +21,9 @@ export function Tomato({ tomatoes }: TomatoProps) {
             </div>
           )
         }
-        { tomatoes && (
+        { selectedStat && (
           <div className={styles.captionContainer}>
-            <span className={styles.caption}>{tomatoes} помидора</span>
+            <span className={styles.caption}>{selectedStat.tomatoes} помидора</span>
           </div>
         )}
       </div>
