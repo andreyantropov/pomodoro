@@ -5,16 +5,12 @@ import { State, Events } from '../../../store/store';
 import { Button } from './Button';
 import { useCurrentDate } from '../../../hooks/useCurrentDate';
 import { useCurrentTask } from '../../../hooks/useCurrentTask';
+import { useCurrentStat } from '../../../hooks/useCurrentStat';
 
 export function Buttons() {
   const { dispatch, timer, stats, settings } = useStoreon<State, Events>('timer', 'stats', 'settings');
   const [ currentTask ] = useCurrentTask();
-  const [currentDate] = useCurrentDate();
-  const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
-
-  useEffect(() => {
-    setStat(stats.find(stat => stat.date === currentDate));
-  }, [stats]);
+  const [ currentStat ] = useCurrentStat();
 
   const handleStartClick = () => {
     dispatch('timer/status/set', 'in progress');
@@ -25,8 +21,8 @@ export function Buttons() {
   const handlePauseClick = () => {
     dispatch('timer/isrunning/set', false);
 
-    if (stat) {
-      dispatch('statistics/stats/update', {...stat, pauses: ++stat.pauses});
+    if (currentStat) {
+      dispatch('statistics/stats/update', {...currentStat, pauses: ++currentStat.pauses});
     }
   }
 
@@ -59,8 +55,8 @@ export function Buttons() {
     }
     dispatch('timer/isrunning/set', true);
 
-    if (stat) {
-      dispatch('statistics/stats/update', {...stat, tomatoes: ++stat.tomatoes});
+    if (currentStat) {
+      dispatch('statistics/stats/update', {...currentStat, tomatoes: ++currentStat.tomatoes});
     }
   }
 

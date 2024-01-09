@@ -7,17 +7,13 @@ import classNames from 'classnames';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCurrentDate } from '../../../hooks/useCurrentDate';
+import { useCurrentStat } from '../../../hooks/useCurrentStat';
 
 export function Clock() {
   const { dispatch, timer, stats, settings } = useStoreon<State, Events>('stats', 'settings');
   const [minutes, setMinutes] = useState((settings.tomato / 60_000).toString());
   const [seconds, setSeconds] = useState('00');
-  const [currentDate] = useCurrentDate();
-  const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
-
-  useEffect(() => {
-    setStat(stats.find(stat => stat.date === currentDate));
-  }, [stats]);
+  const [ currentStat ] = useCurrentStat();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -26,8 +22,8 @@ export function Clock() {
       interval = setInterval(() => {        
         if (timer.time) {
           dispatch('timer/time/set', timer.time - 1000);
-          if (stat) {
-            dispatch('statistics/stats/update', {...stat, workedTime: stat.workedTime + 1000});
+          if (currentStat) {
+            dispatch('statistics/stats/update', {...currentStat, workedTime: currentStat.workedTime + 1000});
           }
         } else {
           clearInterval(interval);
@@ -61,8 +57,8 @@ export function Clock() {
     if (!timer.isRunning && timer.status !== 'stop') {
       interval = setInterval(() => {        
         if (timer.time) {
-          if (stat) {
-            dispatch('statistics/stats/update', {...stat, pausedTime: stat.pausedTime + 1000});
+          if (currentStat) {
+            dispatch('statistics/stats/update', {...currentStat, pausedTime: currentStat.pausedTime + 1000});
           }
         } else {
           clearInterval(interval);
