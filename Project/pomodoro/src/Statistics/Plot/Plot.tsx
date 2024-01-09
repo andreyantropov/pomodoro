@@ -54,7 +54,7 @@ const options: ChartOptions<"bar"> = {
 const labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
 export function Plot() {
-  const { dispatch, stats, selectedWeek } = useStoreon<State, Events>('stats', 'selectedWeek');
+  const { dispatch } = useStoreon<State, Events>();
   const [ weekStat ] = useWeekStat();
   const ref = useRef();
 
@@ -76,7 +76,6 @@ export function Plot() {
       if (elem[0]) {
         dispatch('statistics/selectedDate/update', weekStat[elem[0].index].date);
       }
-      console.log( getElementAtEvent(ref.current, event) );
     }
   }
 

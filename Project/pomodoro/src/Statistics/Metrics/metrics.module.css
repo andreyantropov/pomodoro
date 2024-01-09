@@ -1,0 +1,23 @@
+.focus.focus {
+    background-color: #ffdda9;
+}
+
+.pausedTime.pausedTime {
+    background-color: #dfdcfe;
+}
+
+.pauses.pauses {
+    background-color: #c5f1ff;
+}
+
+.focusIcon {
+    stroke: #ffae35;
+}
+
+.clockIcon {
+    stroke: #9c97d7;
+}
+
+.stopIcon {
+    stroke: #7fc2d7;
+}

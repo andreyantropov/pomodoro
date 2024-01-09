@@ -18,7 +18,7 @@ const noop = () => {};
 
 export function Confirm({ title = 'Подтверждение', message = '', confirmBtnText = 'Ок', cancelBtnText = 'Отмена', isOpen = false, onConfirm = noop, onCancel = noop }: ConfirmProps) {
   const [isShown, setIsShown] = React.useState(isOpen);
-  React.useEffect(() => setIsShown(isOpen), [isOpen]);
+  useEffect(() => setIsShown(isOpen), [isOpen]);
 
   const ref = useRef<HTMLDivElement>(null);
 
