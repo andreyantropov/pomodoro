@@ -4,7 +4,7 @@ import { Title } from './Title';
 import { Events, State } from '../../store/store';
 import { useStoreon } from 'storeon/react';
 import { Clock } from './Clock';
-import { Buttons } from './Buttons';
+import { Buttons } from './Buttons/Buttons';
 
 export function Timer() {
   const { tasks, timer, settings } = useStoreon<State, Events>('tasks', 'timer', 'settings');

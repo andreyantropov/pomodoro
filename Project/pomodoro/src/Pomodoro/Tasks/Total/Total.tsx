@@ -4,12 +4,8 @@ import { Task } from '../../../interfaces/task';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
 
-interface TaskListProps {
-  tasks: Task[];
-}
-
-export function Total({ tasks }: TaskListProps) {
-  const { dispatch, settings } = useStoreon<State, Events>('settings');
+export function Total() {
+  const { tasks, settings } = useStoreon<State, Events>('tasks', 'settings');
   const [totalTime, setTotalTime] = useState(0);
 
   useEffect(() => {

@@ -24,12 +24,17 @@ export function TaskEditFormContainer({ task }: TakeEditFormContainer) {
     }
   }
 
+  function handleBlur() {
+    setValue(task.text);
+      dispatch('tasks/update', { ...task, isEdit: false });
+  }
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     dispatch('tasks/update', { ...task, text: value, isEdit: false });
   }
 
   return (
-    <TaskEditForm value={value} isEdit={task.isEdit} OnChange={handleChange} OnKeyDown={handleKeyDown} OnSubmit={handleSubmit} />
+    <TaskEditForm value={value} isEdit={task.isEdit} OnChange={handleChange} OnKeyDown={handleKeyDown} OnSubmit={handleSubmit} OnBlur={handleBlur} />
   );
 }
