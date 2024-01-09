@@ -14,8 +14,8 @@ interface ClockProps {
 }
 
 export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
-  const { dispatch, stats } = useStoreon<State, Events>('stats');
-  const [minutes, setMinutes] = useState('25');
+  const { dispatch, stats, settings } = useStoreon<State, Events>('stats', 'settings');
+  const [minutes, setMinutes] = useState((settings.tomato / 60_000).toString());
   const [seconds, setSeconds] = useState('00');
   const [currentDate, setCurrentDate] = useState(new Date().getDate());
   const [stat, setStat] = useState(stats.find(stat => stat.date === currentDate));
@@ -86,6 +86,12 @@ export function Clock({ timer, additionalTime = 60_000 }: ClockProps) {
     const sec = ((timer.time % 60_000) / 1000);
     setSeconds( sec.toString().padStart(2, '0') );
   }, [timer.time]);
+
+  useEffect(() => {
+    if (timer.status === 'stop') {
+      setMinutes((settings.tomato / 60_000).toString());
+    }
+  }, [settings]);
 
   const clockClasses = classNames(
     styles.clock,
