@@ -1,10 +1,12 @@
-.primaryBtn {
+.btn {
     padding: 15px 50px;
-    border: 2px solid var(--secondary);
-    width: calc((100% - 25px) / 2);
     font-size: 16px;
     font-weight: 500;
     line-height: 17px;
+}
+
+.primaryBtn {
+    border: 2px solid var(--secondary);
     color: var(--white);
     background-color: var(--secondary);
     transition: border 0.3s, color 0.3s, background-color 0.3s;

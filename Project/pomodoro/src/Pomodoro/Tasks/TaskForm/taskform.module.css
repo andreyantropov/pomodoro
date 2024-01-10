@@ -22,31 +22,5 @@
 }
 
 .addBtn {
-    margin-bottom: 25px;
-    padding: 15px 50px;
-    border: 2px solid var(--secondary);
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 17px;
-    color: var(--white);
-    background-color: var(--secondary);
-    transition: border 0.3s, color 0.3s, background-color 0.3s;
-}
-
-.addBtn:focus {
-    border: 2px solid var(--secondary-light);
-    outline: none;
-    background-color: var(--secondary-light);
-}
-
-@media (any-hover: hover) {
-    .addBtn:hover {
-        border: 2px solid var(--secondary-darker);
-        background-color: var(--secondary-darker);
-    }
-}
-
-.addBtn:active {
-    border: 2px solid var(--secondary-dark);
-    background-color: var(--secondary-dark);
+    width: auto;
 }

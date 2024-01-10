@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './buttons.module.css';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
-import { Button } from './Button';
+import { Button } from '../../../Button';
 import { useCurrentTask } from '../../../hooks/useCurrentTask';
 import { useCurrentStat } from '../../../hooks/useCurrentStat';
 import { TimerStatus } from '../../../enums/TimerStatus';
@@ -12,11 +12,11 @@ export function Buttons() {
   const [ currentTask ] = useCurrentTask();
   const [ currentStat ] = useCurrentStat();
 
-  const handleStartClick = () => {
+  function handleStartClick() {
     dispatch('timer/update', {...timer, status: TimerStatus.InProgress, time: settings.workTime});
   }
 
-  const handlePauseClick = () => {
+  function handlePauseClick() {
     if (timer.status === TimerStatus.InProgress) {
       dispatch('timer/update', {...timer, status: TimerStatus.InProgressPaused});
     } else if (timer.status === TimerStatus.Break) {
@@ -28,7 +28,7 @@ export function Buttons() {
     }
   }
 
-  const handleContinueClick = () => {
+  function handleContinueClick() {
     if (timer.status === TimerStatus.InProgressPaused) {
       dispatch('timer/update', {...timer, status: TimerStatus.InProgress});
     } else if (timer.status === TimerStatus.BreakPaused) {
@@ -36,11 +36,11 @@ export function Buttons() {
     }
   }
 
-  const handleStopClick = () => {
+  function handleStopClick() {
     dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.workTime});
   }
 
-  const handleSkipClick = () => {
+  function handleSkipClick() {
     dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.workTime, tomatoes: ++timer.tomatoes});
 
     if (currentTask) {
@@ -48,7 +48,7 @@ export function Buttons() {
     }
   }
 
-  const handleDoneClick = () => {
+  function handleDoneClick() {
     if (timer.tomatoes % 4) {
       dispatch('timer/update', {...timer, status: TimerStatus.Break, time: settings.shortBreak});
     } else {
@@ -64,32 +64,32 @@ export function Buttons() {
     <div className={styles.buttonsComponent}>
       {timer.status === TimerStatus.Stop && (
         <>
-          <Button text='Старт' style='primary' OnClick={handleStartClick} />
-          <Button text='Стоп' style='secondary' OnClick={handlePauseClick} disabled={true} />
+          <Button className={styles.btn} text='Старт' style='primary' OnClick={handleStartClick} />
+          <Button className={styles.btn} text='Стоп' style='secondary' OnClick={handlePauseClick} disabled={true} />
         </>
       )}
       {timer.status === TimerStatus.InProgress && (
         <>
-          <Button text='Пауза' style='primary' OnClick={handlePauseClick} />
-          <Button text='Стоп' style='secondary' OnClick={handleStopClick} />
+          <Button className={styles.btn} text='Пауза' style='primary' OnClick={handlePauseClick} />
+          <Button className={styles.btn} text='Стоп' style='secondary' OnClick={handleStopClick} />
         </>
       )}
       {timer.status === TimerStatus.InProgressPaused && (
         <>
-          <Button text='Продолжить' style='primary' OnClick={handleContinueClick} />
-          <Button text='Сделано' style='secondary' OnClick={handleDoneClick} />
+          <Button className={styles.btn} text='Продолжить' style='primary' OnClick={handleContinueClick} />
+          <Button className={styles.btn} text='Сделано' style='secondary' OnClick={handleDoneClick} />
         </>
       )}
       {timer.status === TimerStatus.Break && (
         <>
-          <Button text='Пауза' style='primary' OnClick={handlePauseClick} />
-          <Button text='Пропустить' style='secondary' OnClick={handleSkipClick} />
+          <Button className={styles.btn} text='Пауза' style='primary' OnClick={handlePauseClick} />
+          <Button className={styles.btn} text='Пропустить' style='secondary' OnClick={handleSkipClick} />
         </>
       )}
       {timer.status === TimerStatus.BreakPaused && (
         <>
-          <Button text='Продолжить' style='primary' OnClick={handleContinueClick} />
-          <Button text='Пропустить' style='secondary' OnClick={handleSkipClick} />
+          <Button className={styles.btn} text='Продолжить' style='primary' OnClick={handleContinueClick} />
+          <Button className={styles.btn} text='Пропустить' style='secondary' OnClick={handleSkipClick} />
         </>
       )}
     </div>

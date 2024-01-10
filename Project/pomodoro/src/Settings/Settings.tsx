@@ -5,6 +5,7 @@ import { Events, State } from '../store/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MIN } from '../constants/time';
+import { Button } from '../Button';
 
 export function Settings() {
   const { dispatch, settings } = useStoreon<State, Events>('settings');
@@ -70,8 +71,8 @@ export function Settings() {
             </div>
 
             <div className={styles.btnContainer}>
-              <button className={styles.saveBtn} type="submit">Сохранить</button>
-              <button className={styles.defaultBtn} onClick={handleDefault}>По умолчанию</button>
+              <Button className={styles.btn} text='Сохранить' style='primary' type="submit" />
+              <Button className={styles.btn} text='По умолчанию' style='secondary' OnClick={handleDefault} />
             </div>
           </form>
         </div>

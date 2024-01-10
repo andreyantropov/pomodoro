@@ -4,3 +4,7 @@
     max-width: 372px;
     width: 100%;
 }
+
+.btn {
+    width: calc((100% - 25px) / 2);
+}
