@@ -21,7 +21,7 @@ export function Clock() {
     if (timer.status === TimerStatus.InProgress || timer.status === TimerStatus.Break) {
       interval = setInterval(() => {        
         if (timer.time) {
-          dispatch('timer/time/set', timer.time - 1000);
+          dispatch('timer/update', {...timer, time: timer.time - 1000});
           if (currentStat) {
             dispatch('statistics/stats/update', {...currentStat, workedTime: currentStat.workedTime + 1000});
           }

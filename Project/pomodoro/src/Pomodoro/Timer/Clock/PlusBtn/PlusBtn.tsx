@@ -15,7 +15,7 @@ export function PlusBtn({ timer, additionalTime = 60_000 }: PlusBtnProps) {
   const { dispatch } = useStoreon<State, Events>();
 
   function handleClick() {
-    dispatch('timer/time/set', timer.time + additionalTime);
+    dispatch('timer/update', {...timer, time: timer.time + additionalTime});
   }
 
   return (

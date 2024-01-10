@@ -13,15 +13,14 @@ export function Buttons() {
   const [ currentStat ] = useCurrentStat();
 
   const handleStartClick = () => {
-    dispatch('timer/status/set', TimerStatus.InProgress);
-    dispatch('timer/time/set', settings.tomato);
+    dispatch('timer/update', {...timer, status: TimerStatus.InProgress, time: settings.tomato});
   }
 
   const handlePauseClick = () => {
     if (timer.status === TimerStatus.InProgress) {
-      dispatch('timer/status/set', TimerStatus.InProgressPaused);
+      dispatch('timer/update', {...timer, status: TimerStatus.InProgressPaused});
     } else if (timer.status === TimerStatus.Break) {
-      dispatch('timer/status/set', TimerStatus.BreakPaused);
+      dispatch('timer/update', {...timer, status: TimerStatus.BreakPaused});
     }
 
     if (currentStat) {
@@ -31,32 +30,29 @@ export function Buttons() {
 
   const handleContinueClick = () => {
     if (timer.status === TimerStatus.InProgressPaused) {
-      dispatch('timer/status/set', TimerStatus.InProgress);
+      dispatch('timer/update', {...timer, status: TimerStatus.InProgress});
     } else if (timer.status === TimerStatus.BreakPaused) {
-      dispatch('timer/status/set', TimerStatus.Break);
+      dispatch('timer/update', {...timer, status: TimerStatus.Break});
     }
   }
 
   const handleStopClick = () => {
-    dispatch('timer/status/set', TimerStatus.Stop);
-    dispatch('timer/time/set', settings.tomato);
+    dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.tomato});
   }
 
   const handleSkipClick = () => {
-    dispatch('timer/status/set', TimerStatus.Stop);
-    dispatch('timer/time/set', settings.tomato);
-    dispatch('timer/tomatoes/set', ++timer.tomatoes);
+    dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.tomato, tomatoes: ++timer.tomatoes});
+
     if (currentTask) {
       dispatch('tasks/update', {...currentTask, currentTomato: ++currentTask.currentTomato});
     }
   }
 
   const handleDoneClick = () => {
-    dispatch('timer/status/set', TimerStatus.Break);
     if (timer.tomatoes % 4) {
-      dispatch('timer/time/set', settings.shortBreak);
+      dispatch('timer/update', {...timer, status: TimerStatus.Break, time: settings.shortBreak});
     } else {
-      dispatch('timer/time/set', settings.longBreak);
+      dispatch('timer/update', {...timer, status: TimerStatus.Break, time: settings.longBreak});
     }
 
     if (currentStat) {
