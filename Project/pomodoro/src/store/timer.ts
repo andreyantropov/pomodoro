@@ -1,5 +1,6 @@
 import { StoreonModule } from "storeon";
-import { Timer, Status } from "../interfaces/timer";
+import { Timer } from "../interfaces/timer";
+import { TimerStatus } from "../enums/TimerStatus";
 
 export interface TimerState {
     timer: Timer;
@@ -8,12 +9,11 @@ export interface TimerState {
 export interface TimerEvents {
     'timer/time/set': number;
     'timer/tomatoes/set': number;
-    'timer/status/set': Status;
-    'timer/isrunning/set': boolean;
+    'timer/status/set': TimerStatus;
 }
 
 export const timerModule: StoreonModule<TimerState, TimerEvents> = store => {
-    store.on('@init', () => ({ timer: { time: 1_500_000, tomatoes: 1, status: 'stop', isRunning: false } }));
+    store.on('@init', () => ({ timer: { time: 1_500_000, tomatoes: 1, status: TimerStatus.Stop, isRunning: false } }));
 
     store.on('timer/time/set', ({ timer }, updTime) => {
         return { timer: {...timer, time: updTime} };
@@ -23,8 +23,5 @@ export const timerModule: StoreonModule<TimerState, TimerEvents> = store => {
     });
     store.on('timer/status/set', ({ timer }, updStatus) => {
         return { timer: {...timer, status: updStatus} };
-    });
-    store.on('timer/isrunning/set', ({ timer }, updIsRunning) => {
-        return { timer: {...timer, isRunning: updIsRunning} };
     });
 }

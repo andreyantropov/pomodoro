@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './buttons.module.css';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
 import { Button } from './Button';
-import { useCurrentDate } from '../../../hooks/useCurrentDate';
 import { useCurrentTask } from '../../../hooks/useCurrentTask';
 import { useCurrentStat } from '../../../hooks/useCurrentStat';
+import { TimerStatus } from '../../../enums/TimerStatus';
 
 export function Buttons() {
-  const { dispatch, timer, stats, settings } = useStoreon<State, Events>('timer', 'stats', 'settings');
+  const { dispatch, timer, settings } = useStoreon<State, Events>('timer', 'settings');
   const [ currentTask ] = useCurrentTask();
   const [ currentStat ] = useCurrentStat();
 
   const handleStartClick = () => {
-    dispatch('timer/status/set', 'in progress');
+    dispatch('timer/status/set', TimerStatus.InProgress);
     dispatch('timer/time/set', settings.tomato);
-    dispatch('timer/isrunning/set', true);
   }
 
   const handlePauseClick = () => {
-    dispatch('timer/isrunning/set', false);
+    if (timer.status === TimerStatus.InProgress) {
+      dispatch('timer/status/set', TimerStatus.InProgressPaused);
+    } else if (timer.status === TimerStatus.Break) {
+      dispatch('timer/status/set', TimerStatus.BreakPaused);
+    }
 
     if (currentStat) {
       dispatch('statistics/stats/update', {...currentStat, pauses: ++currentStat.pauses});
@@ -27,33 +30,34 @@ export function Buttons() {
   }
 
   const handleContinueClick = () => {
-    dispatch('timer/isrunning/set', true);
+    if (timer.status === TimerStatus.InProgressPaused) {
+      dispatch('timer/status/set', TimerStatus.InProgress);
+    } else if (timer.status === TimerStatus.BreakPaused) {
+      dispatch('timer/status/set', TimerStatus.Break);
+    }
   }
 
   const handleStopClick = () => {
-    dispatch('timer/status/set', 'stop');
+    dispatch('timer/status/set', TimerStatus.Stop);
     dispatch('timer/time/set', settings.tomato);
-    dispatch('timer/isrunning/set', false);
   }
 
   const handleSkipClick = () => {
-    dispatch('timer/status/set', 'stop');
+    dispatch('timer/status/set', TimerStatus.Stop);
     dispatch('timer/time/set', settings.tomato);
     dispatch('timer/tomatoes/set', ++timer.tomatoes);
-    dispatch('timer/isrunning/set', false);
     if (currentTask) {
       dispatch('tasks/update', {...currentTask, currentTomato: ++currentTask.currentTomato});
     }
   }
 
   const handleDoneClick = () => {
-    dispatch('timer/status/set', 'break');
+    dispatch('timer/status/set', TimerStatus.Break);
     if (timer.tomatoes % 4) {
       dispatch('timer/time/set', settings.shortBreak);
     } else {
       dispatch('timer/time/set', settings.longBreak);
     }
-    dispatch('timer/isrunning/set', true);
 
     if (currentStat) {
       dispatch('statistics/stats/update', {...currentStat, tomatoes: ++currentStat.tomatoes});
@@ -62,31 +66,31 @@ export function Buttons() {
 
   return (
     <div className={styles.buttonsComponent}>
-      {timer.status === 'stop' && (
+      {timer.status === TimerStatus.Stop && (
         <>
           <Button text='Старт' style='primary' OnClick={handleStartClick} />
           <Button text='Стоп' style='secondary' OnClick={handlePauseClick} disabled={true} />
         </>
       )}
-      {timer.status === 'in progress' && timer.isRunning && (
+      {timer.status === TimerStatus.InProgress && (
         <>
           <Button text='Пауза' style='primary' OnClick={handlePauseClick} />
           <Button text='Стоп' style='secondary' OnClick={handleStopClick} />
         </>
       )}
-      {timer.status === 'in progress' && !timer.isRunning && (
+      {timer.status === TimerStatus.InProgressPaused && (
         <>
           <Button text='Продолжить' style='primary' OnClick={handleContinueClick} />
           <Button text='Сделано' style='secondary' OnClick={handleDoneClick} />
         </>
       )}
-      {timer.status === 'break' && timer.isRunning && (
+      {timer.status === TimerStatus.Break && (
         <>
           <Button text='Пауза' style='primary' OnClick={handlePauseClick} />
           <Button text='Пропустить' style='secondary' OnClick={handleSkipClick} />
         </>
       )}
-      {timer.status === 'break' && !timer.isRunning && (
+      {timer.status === TimerStatus.BreakPaused && (
         <>
           <Button text='Продолжить' style='primary' OnClick={handleContinueClick} />
           <Button text='Пропустить' style='secondary' OnClick={handleSkipClick} />

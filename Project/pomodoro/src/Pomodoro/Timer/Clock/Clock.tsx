@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCurrentStat } from '../../../hooks/useCurrentStat';
+import { TimerStatus } from '../../../enums/TimerStatus';
 
 export function Clock() {
   const { dispatch, timer, stats, settings } = useStoreon<State, Events>('timer', 'stats', 'settings');
@@ -16,8 +17,8 @@ export function Clock() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-
-    if (timer.isRunning) {
+    
+    if (timer.status === TimerStatus.InProgress || timer.status === TimerStatus.Break) {
       interval = setInterval(() => {        
         if (timer.time) {
           dispatch('timer/time/set', timer.time - 1000);
@@ -37,9 +38,9 @@ export function Clock() {
 
   useEffect(() => {
     if (timer.time === 0) {
-      if (timer.status === 'in progress') {
+      if (timer.status === TimerStatus.InProgress) {
         notification("Вы отлично поработали! Пора отдохнуть!");
-      } else if (timer.status === 'break') {
+      } else if (timer.status === TimerStatus.Break) {
         notification("Пора поработать!");
       }  
     }
@@ -53,7 +54,7 @@ export function Clock() {
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (!timer.isRunning && timer.status !== 'stop') {
+    if (timer.status === TimerStatus.InProgressPaused || timer.status === TimerStatus.BreakPaused) {
       interval = setInterval(() => {        
         if (timer.time) {
           if (currentStat) {
@@ -78,15 +79,15 @@ export function Clock() {
   }, [timer.time]);
 
   useEffect(() => {
-    if (timer.status === 'stop') {
+    if (timer.status === TimerStatus.Stop) {
       setMinutes((settings.tomato / 60_000).toString());
     }
   }, [settings]);
 
   const clockClasses = classNames(
     styles.clock,
-    { [styles.inProgress]: timer.status === 'in progress' && timer.isRunning },
-    { [styles.break]: timer.status === 'break' && timer.isRunning },
+    { [styles.inProgress]: timer.status === TimerStatus.InProgress },
+    { [styles.break]: timer.status === TimerStatus.Break },
   );
 
   return (

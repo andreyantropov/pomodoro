@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useCurrentTask } from '../../../hooks/useCurrentTask';
 import { useStoreon } from 'storeon/react';
 import { Events, State } from '../../../store/store';
+import { TimerStatus } from '../../../enums/TimerStatus';
 
 export function Title() {
   const { timer } = useStoreon<State, Events>('timer');
@@ -11,8 +12,8 @@ export function Title() {
   
   const titleContainerClasses = classNames(
     styles.titleContainer,
-    { [styles.inProgress]: timer.status === 'in progress' },
-    { [styles.break]: timer.status === 'break' },
+    { [styles.inProgress]: timer.status === TimerStatus.InProgress },
+    { [styles.break]: timer.status === TimerStatus.Break },
   );
   
   return (

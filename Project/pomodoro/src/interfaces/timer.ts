@@ -1,8 +1,7 @@
+import { TimerStatus } from "../enums/TimerStatus";
+
 export interface Timer {
     time: number;
     tomatoes: number;
-    status: Status;
-    isRunning: boolean;
+    status: TimerStatus;
 }
-
-export type Status =  'in progress' | 'break' | 'stop';
