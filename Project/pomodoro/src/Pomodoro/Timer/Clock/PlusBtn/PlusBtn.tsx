@@ -5,13 +5,14 @@ import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../store/store';
 import { Icon } from '../../../../Icon';
 import { Icons } from '../../../../enums/Icons';
+import { MIN } from '../../../../constants/time';
 
 interface PlusBtnProps {
   timer: Timer;
   additionalTime?: number;
 }
 
-export function PlusBtn({ timer, additionalTime = 60_000 }: PlusBtnProps) {
+export function PlusBtn({ timer, additionalTime = MIN }: PlusBtnProps) {
   const { dispatch } = useStoreon<State, Events>();
 
   function handleClick() {

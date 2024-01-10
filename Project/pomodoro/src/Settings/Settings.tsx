@@ -4,13 +4,14 @@ import { useStoreon } from 'storeon/react';
 import { Events, State } from '../store/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { MIN } from '../constants/time';
 
 export function Settings() {
   const { dispatch, settings } = useStoreon<State, Events>('settings');
-  const [tomatoTime, setTomatoTime] = useState(settings.tomato / 60_000);
-  const [shortBreakTime, setShortBreakTime] = useState(settings.shortBreak / 60_000);
-  const [longBreakTime, setLongBreakTime] = useState(settings.longBreak / 60_000);
-  const [additionalTime, setAdditionalTime] = useState(settings.additionalTime / 60_000);
+  const [tomatoTime, setTomatoTime] = useState(settings.workTime / MIN);
+  const [shortBreakTime, setShortBreakTime] = useState(settings.shortBreak / MIN);
+  const [longBreakTime, setLongBreakTime] = useState(settings.longBreak / MIN);
+  const [additionalTime, setAdditionalTime] = useState(settings.additionalTime / MIN);
 
   function handleTomatoTimeChange(e: ChangeEvent<HTMLInputElement>) {
     setTomatoTime(Number(e.target.value));
@@ -30,7 +31,7 @@ export function Settings() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('settings/update', { tomato: tomatoTime * 60_000, shortBreak: shortBreakTime * 60_000, longBreak: longBreakTime * 60_000, additionalTime: additionalTime * 60_000 });
+    dispatch('settings/update', { workTime: tomatoTime * MIN, shortBreak: shortBreakTime * MIN, longBreak: longBreakTime * MIN, additionalTime: additionalTime * MIN });
     
     toast("Настройки успешно сохранены");
   }
@@ -40,7 +41,7 @@ export function Settings() {
     setShortBreakTime(5);
     setLongBreakTime(15);
     setAdditionalTime(1);
-    dispatch('settings/update', { tomato: 25 * 60_000, shortBreak: 5 * 60_000, longBreak: 15 * 60_000, additionalTime: 1 * 60_000 });
+    dispatch('settings/update', { workTime: 25 * MIN, shortBreak: 5 * MIN, longBreak: 15 * MIN, additionalTime: 1 * MIN });
   }
 
   return (

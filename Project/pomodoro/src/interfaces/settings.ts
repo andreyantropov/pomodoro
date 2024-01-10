@@ -1,5 +1,5 @@
 export interface Settings {
-    tomato: number;
+    workTime: number;
     shortBreak: number;
     longBreak: number;
     additionalTime: number;

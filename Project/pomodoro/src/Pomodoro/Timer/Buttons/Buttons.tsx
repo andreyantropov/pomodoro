@@ -13,7 +13,7 @@ export function Buttons() {
   const [ currentStat ] = useCurrentStat();
 
   const handleStartClick = () => {
-    dispatch('timer/update', {...timer, status: TimerStatus.InProgress, time: settings.tomato});
+    dispatch('timer/update', {...timer, status: TimerStatus.InProgress, time: settings.workTime});
   }
 
   const handlePauseClick = () => {
@@ -37,11 +37,11 @@ export function Buttons() {
   }
 
   const handleStopClick = () => {
-    dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.tomato});
+    dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.workTime});
   }
 
   const handleSkipClick = () => {
-    dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.tomato, tomatoes: ++timer.tomatoes});
+    dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.workTime, tomatoes: ++timer.tomatoes});
 
     if (currentTask) {
       dispatch('tasks/update', {...currentTask, currentTomato: ++currentTask.currentTomato});

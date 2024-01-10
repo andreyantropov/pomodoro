@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './time.module.css';
 import { useSelectedStat } from '../../hooks/useSelectedStat';
+import { HOUR, MIN, SEC } from '../../constants/time';
 
 export function Time() {
   const [ selectedStat ] = useSelectedStat();
@@ -9,9 +10,9 @@ export function Time() {
 
   useEffect(() => {
     if (selectedStat) {
-      const hr = Math.floor((selectedStat.workedTime / 3_600_000) / 1000);
+      const hr = Math.floor((selectedStat.workedTime / HOUR) / SEC);
       setHours( hr.toString() );
-      const min = Math.floor((selectedStat.workedTime % 3_600_000) / 60_000);
+      const min = Math.floor((selectedStat.workedTime % HOUR) / MIN);
       setMinutes( min.toString() );
     }
   }, [selectedStat]);

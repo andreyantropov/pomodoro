@@ -8,10 +8,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCurrentStat } from '../../../hooks/useCurrentStat';
 import { TimerStatus } from '../../../enums/TimerStatus';
+import { MIN, SEC } from '../../../constants/time';
 
 export function Clock() {
   const { dispatch, timer, stats, settings } = useStoreon<State, Events>('timer', 'stats', 'settings');
-  const [minutes, setMinutes] = useState((settings.tomato / 60_000).toString());
+  const [minutes, setMinutes] = useState((settings.workTime / MIN).toString());
   const [seconds, setSeconds] = useState('00');
   const [ currentStat ] = useCurrentStat();
 
@@ -72,15 +73,15 @@ export function Clock() {
   }, [timer, stats]);
 
   useEffect(() => {
-    const min = Math.floor(timer.time / 60_000);
+    const min = Math.floor(timer.time / MIN);
     setMinutes( min.toString().padStart(2, '0') );
-    const sec = ((timer.time % 60_000) / 1000);
+    const sec = ((timer.time % MIN) / SEC);
     setSeconds( sec.toString().padStart(2, '0') );
   }, [timer.time]);
 
   useEffect(() => {
     if (timer.status === TimerStatus.Stop) {
-      setMinutes((settings.tomato / 60_000).toString());
+      setMinutes((settings.workTime / MIN).toString());
     }
   }, [settings]);
 

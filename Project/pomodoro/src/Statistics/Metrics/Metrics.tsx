@@ -5,12 +5,13 @@ import { Icons } from '../../enums/Icons';
 import { generateId } from '../../utils/generateRandomIndex';
 import { useSelectedStat } from '../../hooks/useSelectedStat';
 import { Metric } from '../../interfaces/metric';
+import { MIN } from '../../constants/time';
 
 export function Metrics() {
   const [ selectedStat ] = useSelectedStat();
   
   const focus = selectedStat ? Math.round((selectedStat.tomatoes / selectedStat.plannedTomatoes) * 100) : 0;
-  const pausedTime = selectedStat ? Math.round(selectedStat.pausedTime / 60_000) : 0;
+  const pausedTime = selectedStat ? Math.round(selectedStat.pausedTime / MIN) : 0;
   const pauses = selectedStat ? selectedStat.pauses : 0;
 
   const metricItems: Metric[] = [
