@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import styles from './confirm.module.css';
 import { Icon } from '../Icon';
 import { Icons } from '../enums/Icons';
