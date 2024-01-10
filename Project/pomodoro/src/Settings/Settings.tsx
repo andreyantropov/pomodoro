@@ -5,7 +5,8 @@ import { Events, State } from '../store/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MIN } from '../constants/time';
-import { Button } from '../Button';
+import { Input } from './Input';
+import { Buttons } from './Buttons';
 
 export function Settings() {
   const { dispatch, settings } = useStoreon<State, Events>('settings');
@@ -50,30 +51,11 @@ export function Settings() {
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <form className={styles.form} action="" onSubmit={handleSubmit}>
-            <div className={styles.input}>
-              <label className={styles.label} htmlFor="tomatoTime">Длительность помидорки (мин):</label>
-              <input className={styles.control} id="tomatoTime" type="number" value={tomatoTime} min={1} max={60} onChange={handleTomatoTimeChange} required />
-            </div>
-
-            <div className={styles.input}>
-              <label className={styles.label} htmlFor="shortBreakTime">Короткий перерыв (мин):</label>
-              <input className={styles.control} id="shortBreakTime" type="number" value={shortBreakTime} min={1} max={60} onChange={handleshortBreakTimeChange} required />
-            </div>
-
-            <div className={styles.input}>
-              <label className={styles.label} htmlFor="longBreakTime">Длинный перерыв (мин):</label>
-              <input className={styles.control} id="longBreakTime" type="number" value={longBreakTime} min={1} max={60} onChange={handleLongBreakTimeChange} required />
-            </div>
-
-            <div className={styles.input}>
-              <label className={styles.label} htmlFor="additionalTime">Доп. время (мин):</label>
-              <input className={styles.control} id="additionalTime" type="number" value={additionalTime} min={1} max={60} onChange={handleAdditionalTimeChange} required />
-            </div>
-
-            <div className={styles.btnContainer}>
-              <Button className={styles.btn} text='Сохранить' style='primary' type="submit" />
-              <Button className={styles.btn} text='По умолчанию' style='secondary' OnClick={handleDefault} />
-            </div>
+            <Input label='Длительность помидорки (мин):' id='tomatoTime' value={tomatoTime.toString()} OnChange={handleTomatoTimeChange} />
+            <Input label='Короткий перерыв (мин):' id='shortBreakTime' value={shortBreakTime.toString()} OnChange={handleshortBreakTimeChange} />
+            <Input label='Длинный перерыв (мин):' id='longBreakTime' value={longBreakTime.toString()} OnChange={handleLongBreakTimeChange} />
+            <Input label='Доп. время (мин):' id='additionalTime' value={additionalTime.toString()} OnChange={handleAdditionalTimeChange} />
+            <Buttons OnDefaultClick={handleDefault} />
           </form>
         </div>
       </div>

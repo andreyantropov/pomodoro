@@ -18,7 +18,7 @@ export function Clock() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    
+
     if (timer.status === TimerStatus.InProgress || timer.status === TimerStatus.Break) {
       interval = setInterval(() => {        
         if (timer.time) {
@@ -45,12 +45,12 @@ export function Clock() {
         notification("Пора поработать!");
       }  
     }
-  }, [timer]);
 
-  function notification(message: string) {
-    new Audio('audio/notification.wav').play();
-    toast(message);
-  }
+    function notification(message: string) {
+      new Audio('audio/notification.wav').play();
+      toast(message);
+    }
+  }, [timer]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
