@@ -1,22 +1,15 @@
 import React from 'react';
 import styles from './plusbtn.module.css';
-import { Timer } from '../../../../interfaces/timer';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../store/store';
 import { Icon } from '../../../../Icon';
 import { Icons } from '../../../../enums/Icons';
-import { MIN } from '../../../../constants/time';
 
-interface PlusBtnProps {
-  timer: Timer;
-  additionalTime?: number;
-}
-
-export function PlusBtn({ timer, additionalTime = MIN }: PlusBtnProps) {
-  const { dispatch } = useStoreon<State, Events>();
+export function PlusBtn() {
+  const { dispatch, timer, settings } = useStoreon<State, Events>('timer', 'settings');
 
   function handleClick() {
-    dispatch('timer/update', {...timer, time: timer.time + additionalTime});
+    dispatch('timer/update', {...timer, time: timer.time + settings.additionalTime});
   }
 
   return (

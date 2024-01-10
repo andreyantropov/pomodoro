@@ -94,7 +94,7 @@ export function Clock() {
   return (
     <div className={styles.clockComponent}>
       <span className={clockClasses}>{minutes}:{seconds}</span>
-      <PlusBtn timer={timer} additionalTime={settings.additionalTime} />
+      <PlusBtn />
       <ToastContainer
         toastStyle={{ padding: "24px", fontSize: "20px", lineHeight: "18px", color: "#fff", backgroundColor: "#a8b64f" }}
         position="top-right"
