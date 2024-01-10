@@ -7,20 +7,3 @@
     width: 100%;
     background-color: var(--grey-light);
 }
-
-.taskContainer {
-    margin-bottom: 32px;
-}
-
-.number {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 17px;
-    color: var(--grey);
-}
-
-.task {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 17px;
-}
