@@ -7,7 +7,7 @@ export function Task() {
   
   return (
     <div className={styles.taskContainer}>
-        <span className={styles.number}>Задача 1 - </span>
+        <span className={styles.number}>Задача - </span>
         <span className={styles.task}>{currentTask ? currentTask.text : 'Задача отсутствует'}</span>
       </div>
   );

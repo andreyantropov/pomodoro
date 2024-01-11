@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './tasklist.module.css';
 import { TaskItem } from './Task/TaskItem';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../store/store';
 import { useCurrentStat } from '../../../hooks/useCurrentStat';
+import { Reorder } from 'framer-motion';
 
 export function TaskList() {
-  const { dispatch, tasks, stats } = useStoreon<State, Events>('tasks', 'stats');
+  const { dispatch, tasks } = useStoreon<State, Events>('tasks');
   const [ currentStat ] = useCurrentStat();
 
   useEffect(() => {
@@ -20,14 +21,14 @@ export function TaskList() {
   }, [tasks]);
 
   return (
-      <ul className={styles.list}>
-        { tasks.map((task) => (
-            <TaskItem
-              key={task.id}
-              task={task}
-            />
-          ))
-        }
-      </ul>
+    <Reorder.Group className={styles.list} axis="y" values={tasks} onReorder={(tasks) => dispatch('tasks/reorder', tasks)}>
+      { tasks.map((task) => (
+          <TaskItem
+            key={task.id}
+            task={task}
+          />
+        ))
+      }
+    </Reorder.Group>
   );
 }

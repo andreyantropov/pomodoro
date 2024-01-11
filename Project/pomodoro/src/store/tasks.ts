@@ -7,6 +7,7 @@ export interface TasksState {
 
 export interface TasksEvents {
     'tasks/add': Task;
+    'tasks/reorder': Task[];
     'tasks/update': Task;
     'tasks/delete': Task;
 }
@@ -16,6 +17,9 @@ export const tasksModule: StoreonModule<TasksState, TasksEvents> = store => {
 
     store.on('tasks/add', ({ tasks }, newTask) => {
         return { tasks: tasks.concat([newTask]) };
+    });
+    store.on('tasks/reorder', ({ tasks }, reorderedTask) => {
+        return { tasks: reorderedTask };
     });
     store.on('tasks/update', ({ tasks }, updTask) => {
         return { tasks: tasks.map((task) => task.id === updTask.id ? updTask : task) };
