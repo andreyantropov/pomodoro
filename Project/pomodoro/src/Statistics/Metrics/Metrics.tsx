@@ -10,9 +10,30 @@ import { MIN } from '../../constants/time';
 export function Metrics() {
   const [ selectedStat ] = useSelectedStat();
   
-  const focus = selectedStat ? Math.round((selectedStat.tomatoes / selectedStat.plannedTomatoes) * 100) : 0;
-  const pausedTime = selectedStat ? Math.round(selectedStat.pausedTime / MIN) : 0;
-  const pauses = selectedStat ? selectedStat.pauses : 0;
+  const focus = calcFocus();
+  const pausedTime = calcPausedTime();
+  const pauses = calcPauses();
+
+  function calcFocus() {
+    if (selectedStat && selectedStat.plannedTomatoes) {
+      return (selectedStat.tomatoes / selectedStat.plannedTomatoes) * 100;
+    }
+    return 0;
+  }
+
+  function calcPausedTime() {
+    if (selectedStat) {
+      return Math.round(selectedStat.pausedTime / MIN);
+    }
+    return 0;
+  }
+
+  function calcPauses() {
+    if (selectedStat) {
+      return selectedStat.pauses;
+    }
+    return 0;
+  }
 
   const metricItems: Metric[] = [
     {
