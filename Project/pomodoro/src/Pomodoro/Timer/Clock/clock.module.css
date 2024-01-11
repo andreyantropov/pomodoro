@@ -9,6 +9,7 @@
     padding-left: 75px;
     font-size: 150px;
     font-weight: 200;
+    transition: color 0.3s;
 }
 
 .inProgress {

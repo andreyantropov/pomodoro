@@ -55,10 +55,10 @@ export function Time() {
       <span className={styles.description}>
         {!selectedStat && "Нет данных"}
         {selectedStat && (
-          <>
+          <React.Fragment>
             Вы работали над задачами в течение
             <span className={styles.time}> {hours}ч {minutes}м</span>
-          </>
+          </React.Fragment>
         )}
       </span>
     </div>

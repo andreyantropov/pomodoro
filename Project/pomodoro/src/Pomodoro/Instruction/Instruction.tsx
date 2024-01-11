@@ -3,7 +3,7 @@ import styles from './instruction.module.css';
 
 export function Instruction() {
   return (
-    <>
+    <React.Fragment>
       <h2 className={styles.title}>Ура! Теперь можно начать работать:</h2>
       <ul className={styles.list}>
         <li className={styles.item}>Выберите категорию и&nbsp;напишите название текущей задачи</li>
@@ -15,6 +15,6 @@ export function Instruction() {
           Каждые 4&nbsp;&laquo;помидора&raquo; делайте длинный перерыв (15-30&nbsp;минут).
         </li>
       </ul>
-    </>
+    </React.Fragment>
   );
 }

@@ -47,7 +47,7 @@ export function Settings() {
   }
 
   return (
-    <section>
+    <section className={styles.settings}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <form className={styles.form} action="" onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ export function Settings() {
         </div>
       </div>
       <ToastContainer
-        toastStyle={{ padding: "24px", fontSize: "20px", lineHeight: "18px", color: "#fff", backgroundColor: "#a8b64f" }}
+        toastStyle={{ padding: "24px", fontSize: "20px", lineHeight: "18px", color: "var(--white)", backgroundColor: "var(--secondary)" }}
         position="top-right"
         autoClose={5000}
         draggable={false}

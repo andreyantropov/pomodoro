@@ -8,7 +8,7 @@ import { Metrics } from './Metrics';
 
 export function Statistics() {
   return (
-    <section>
+    <section className={styles.statistics}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <Title />

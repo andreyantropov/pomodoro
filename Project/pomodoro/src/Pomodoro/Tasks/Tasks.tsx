@@ -6,10 +6,10 @@ import { Total } from './Total';
 
 export function Tasks() {  
   return (
-    <>
+    <React.Fragment>
       <TaskFormContainer />
       <TaskList />
       <Total />
-    </>
+    </React.Fragment>
   );
 }

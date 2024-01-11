@@ -29,7 +29,7 @@ export function Confirm({ title = 'Подтверждение', message = '', co
   }
 
   return (
-    <>
+    <React.Fragment>
       {isShown && ReactDOM.createPortal((
         <div className={styles.background} onClick={onOutsideClick}>
           <div className={styles.dialog} onClick={handleDialogClick}>
@@ -43,6 +43,6 @@ export function Confirm({ title = 'Подтверждение', message = '', co
           </div>
         </div>
       ), node)}
-    </>
+    </React.Fragment>
   );
 }

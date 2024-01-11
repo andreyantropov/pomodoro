@@ -56,8 +56,8 @@ export function Icon({ name, size, className }: IconProps) {
   }
 
   return (
-    <>
+    <React.Fragment>
       {renderSwitch(name)}
-    </>
+    </React.Fragment>
   );
 }

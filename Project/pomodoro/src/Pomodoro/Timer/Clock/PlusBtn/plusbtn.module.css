@@ -1,5 +1,6 @@
 .plusIcon {
     fill: var(--grey-lighter);
+    transition: fill 0.3s;
 }
 
 .btn:focus .plusIcon {

@@ -10,6 +10,7 @@
 .input:disabled {
     border: none;
     background-color: transparent;
+    cursor: grab;
 }
 
 .input:focus:enabled {

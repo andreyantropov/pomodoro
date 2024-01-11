@@ -18,7 +18,7 @@ export function Pomodoro() {
   }, []);
 
   return (
-    <section>
+    <section className={styles.pomodoro}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.tasks}>
