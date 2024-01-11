@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './plot.module.css';
 import {
   Chart as ChartJS,
@@ -24,39 +24,40 @@ ChartJS.register(
   Legend
 );
 
-const options: ChartOptions<"bar"> = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false
-    }
-  },
-  scales: {
-    x: {
-      grid: {
-        display: false
-      },
-    },
-    y: {
-      position: 'right',
-      min: 0,
-      max: 10,
-      ticks: {
-        stepSize: 2,
-      },
-      border: {
-        display: false
-      },
-    },
-  },
-};
-
 const labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
 export function Plot() {
   const { dispatch } = useStoreon<State, Events>();
   const [ weekStat ] = useWeekStat();
+  const [maxTomatoes, setMaxTomatoes] = useState(0);
   const ref = useRef();
+
+  const options: ChartOptions<"bar"> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false
+        },
+      },
+      y: {
+        position: 'right',
+        min: 0,
+        max: maxTomatoes,
+        ticks: {
+          stepSize: Math.round(maxTomatoes / 4),
+        },
+        border: {
+          display: false
+        },
+      },
+    },
+  };
 
   let data = {
     labels,
@@ -69,6 +70,11 @@ export function Plot() {
       },
     ],
   };
+
+  useEffect(() => {
+    let maxTomatoesStat = weekStat.reduce((acc, curr) => acc.tomatoes > curr.tomatoes ? acc : curr);
+    setMaxTomatoes(maxTomatoesStat.tomatoes);
+  }, [weekStat]);
 
   const onClick = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     if (ref.current && event) {
