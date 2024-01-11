@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './pomodoro.module.css';
 import { Timer } from './Timer';
 import { Instruction } from './Instruction';

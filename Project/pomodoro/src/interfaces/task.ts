@@ -4,4 +4,5 @@ export interface Task {
     isEdit: boolean;
     tomatoes: number;
     currentTomato: number;
+    isRemoving: boolean;
 }

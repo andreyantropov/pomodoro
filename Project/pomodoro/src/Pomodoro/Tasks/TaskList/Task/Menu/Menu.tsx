@@ -8,7 +8,7 @@ import { Icons } from '../../../../../enums/Icons';
 import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../../../../store/store';
 import { Task } from '../../../../../interfaces/task';
-import { Confirm } from '../../../../../Confirm';
+import { Confirm } from '../../../../../Confirm/Confirm';
 
 interface MenuProps {
   task: Task;
@@ -41,9 +41,15 @@ export function Menu({ task }: MenuProps) {
       icon: Icons.Delete,
       text: 'Удалить',
       isDisabled: false,
-      OnClick: () => { setIsConfirmOpen(true) },
+      OnClick: () => setIsConfirmOpen(true),
     },
   ].map(generateId);
+
+  function handleRemove() {
+    dispatch('tasks/update', { ...task, isRemoving: true });
+    setIsConfirmOpen(false);
+    setTimeout(() => dispatch('tasks/delete', task), 1000);
+  }
 
   return (
     <div className={styles.menuComponent}>
@@ -58,7 +64,7 @@ export function Menu({ task }: MenuProps) {
           <MenuItemList items={menuItems} />
         </div>
       </DropDown>
-      <Confirm isOpen={isConfirmOpen} title='Удалить задачу?' confirmBtnText='Удалить' onConfirm={ () => dispatch('tasks/delete', task) } onCancel={ () => setIsConfirmOpen(false) } onOutsideClick={ () => setIsConfirmOpen(false) } />
+      <Confirm isOpen={isConfirmOpen} title='Удалить задачу?' confirmBtnText='Удалить' onConfirm={handleRemove} onCancel={ () => setIsConfirmOpen(false) } onOutsideClick={ () => setIsConfirmOpen(false) } />
     </div>
   );
 }

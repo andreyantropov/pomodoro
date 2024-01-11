@@ -13,7 +13,7 @@ export function TaskFormContainer() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('tasks/add', { id: Date.now(), text: value.trim(), isEdit: false, tomatoes: 1, currentTomato: 1 });
+    dispatch('tasks/add', { id: Date.now(), text: value.trim(), isEdit: false, tomatoes: 1, currentTomato: 1, isRemoving: false });
     setValue('');
   }
   
