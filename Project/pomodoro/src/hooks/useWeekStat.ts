@@ -17,12 +17,12 @@ export function useWeekStat() {
         const daysToMonday = (currentDayOfWeek + 6) % 7;
         const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysToMonday - weekOffset * 7);
         const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6 - weekOffset * 7);
-
+        
         const result: Statistic[] = [];
         for (let currentDate = monday; currentDate <= sunday; currentDate.setDate(currentDate.getDate() + 1)) {
-            const currentDateString = currentDate.getDate();
-            const foundData = data.find(item => item.date === currentDateString);
-            const currentData: Statistic = foundData ? { ...foundData, date: currentDateString, } : { date: currentDateString, tomatoes: 0, plannedTomatoes: 0, pauses: 0, workedTime: 0, pausedTime: 0 };
+            const currentDateStamp= currentDate.setHours(0, 0, 0, 0);
+            const foundData = data.find(item => item.date === currentDateStamp);
+            const currentData: Statistic = foundData ? { ...foundData, date: currentDateStamp, } : { date: currentDateStamp, tomatoes: 0, plannedTomatoes: 0, pauses: 0, workedTime: 0, pausedTime: 0 };
             result.push(currentData);
         }
         return result;

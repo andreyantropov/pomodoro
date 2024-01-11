@@ -15,7 +15,7 @@ export interface StatisticsEvents {
 }
 
 export const statisticsModule: StoreonModule<StatisticsState, StatisticsEvents> = store => {
-    store.on('@init', () => ({ stats: [], selectedWeek: 0, selectedDate: new Date().getDate() }));
+    store.on('@init', () => ({ stats: [], selectedWeek: 0, selectedDate: new Date().setHours(0, 0, 0, 0) }));
 
     store.on('statistics/stats/add', ({ stats }, newStat) => {
         return { stats: stats.concat([newStat]) };
