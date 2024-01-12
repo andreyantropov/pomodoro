@@ -5,7 +5,7 @@ import { Icons } from '../../enums/Icons';
 import { generateId } from '../../utils/generateRandomIndex';
 import { useSelectedStat } from '../../hooks/useSelectedStat';
 import { Metric } from '../../interfaces/metric';
-import { MIN } from '../../constants/time';
+import { HOUR, MIN, SEC } from '../../constants/time';
 
 export function Metrics() {
   const [ selectedStat ] = useSelectedStat();
@@ -15,24 +15,33 @@ export function Metrics() {
   const pauses = calcPauses();
 
   function calcFocus() {
-    if (selectedStat && selectedStat.plannedTomatoes) {
-      return (selectedStat.tomatoes / selectedStat.plannedTomatoes) * 100;
+    if (!selectedStat) {
+      return undefined;
+    } else if (!selectedStat.plannedTomatoes) {
+      return '0%';
+    } else {
+      const focus = (selectedStat.tomatoes / selectedStat.plannedTomatoes) * 100;
+      return `${focus}%`;
     }
-    return 0;
   }
 
   function calcPausedTime() {
-    if (selectedStat) {
-      return Math.round(selectedStat.pausedTime / MIN);
+    if (!selectedStat) {
+      return undefined;
+    } else {
+      const hr = Math.floor((selectedStat.workedTime / HOUR) / SEC);
+      const min = Math.floor((selectedStat.workedTime % HOUR) / MIN);
+      const time = hr ? `${hr}ч ${min.toString().padStart(2, '0')}м` : `${min}м`;
+      return time;
     }
-    return 0;
   }
 
   function calcPauses() {
-    if (selectedStat) {
-      return selectedStat.pauses;
+    if (!selectedStat) {
+      return undefined;
+    } else {
+      return selectedStat.pauses.toString();
     }
-    return 0;
   }
 
   const metricItems: Metric[] = [
@@ -40,24 +49,25 @@ export function Metrics() {
       icon: Icons.Focus,
       title: 'Фокус',
       stat: focus,
-      unit: '%',
-      metricStyleClass: styles.focus,
-      iconStyleClass: styles.focusIcon,
+      defaultValue: '0%',
+      metricStyleClass: focus ? styles.focus : undefined,
+      iconStyleClass: focus ? styles.focusIcon : undefined,
     },
     {
       icon: Icons.Clock,
       title: 'Время на паузе',
       stat: pausedTime,
-      unit: 'м',
-      metricStyleClass: styles.pausedTime,
-      iconStyleClass: styles.clockIcon,
+      defaultValue: '0м',
+      metricStyleClass: pausedTime ? styles.pausedTime : undefined,
+      iconStyleClass: pausedTime ? styles.clockIcon : undefined,
     },
     {
       icon: Icons.Stop,
       title: 'Остановки',
       stat: pauses,
-      metricStyleClass: styles.pauses,
-      iconStyleClass: styles.stopIcon,
+      defaultValue: '0',
+      metricStyleClass: pauses ? styles.pauses : undefined,
+      iconStyleClass: pauses ? styles.stopIcon : undefined,
     },
   ].map(generateId);
 

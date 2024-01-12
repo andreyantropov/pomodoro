@@ -15,7 +15,7 @@ export function MetricItem({ metric }: MetricItemProps) {
     if (metric.metricStyleClass) {
       const metricStyleClass = classNames(
         styles.metricItemComponent,
-        { [metric.metricStyleClass]: metric.stat },
+        metric.metricStyleClass,
       );
       setMetricItemClasses(metricStyleClass);
     }
@@ -25,9 +25,9 @@ export function MetricItem({ metric }: MetricItemProps) {
     <li className={metricItemClasses}>
       <div>
         <h4 className={styles.title}>{metric.title}</h4>
-        <span className={styles.stat}>{metric.stat}{metric.unit}</span>
+        <span className={styles.stat}>{metric.stat ?? metric.defaultValue}</span>
       </div>
-      <Icon className={metric.stat ? metric.iconStyleClass : undefined} name={metric.icon} size={130} />
+      <Icon className={metric.iconStyleClass} name={metric.icon} size={130} />
     </li>
   );
 }

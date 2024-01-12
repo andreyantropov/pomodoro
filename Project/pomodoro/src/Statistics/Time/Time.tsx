@@ -10,8 +10,7 @@ export function Time() {
   const [ selectedStat ] = useSelectedStat();
   const { selectedDate } = useStoreon<State, Events>('selectedDate');
   const [weekDay, setWeekDay] = useState('Воскресенье');
-  const [hours, setHours] = useState('0');
-  const [minutes, setMinutes] = useState('0');
+  const [time, setTime] = useState('Нет данных');
 
   useEffect(() => {
     const weekDayNumber = new Date(selectedDate).getDay();
@@ -41,11 +40,12 @@ export function Time() {
   }, [selectedDate]);
 
   useEffect(() => {
-    if (selectedStat) {
+    if (!selectedStat) {
+      setTime('Нет данных');
+    } else {
       const hr = Math.floor((selectedStat.workedTime / HOUR) / SEC);
-      setHours( hr.toString() );
       const min = Math.floor((selectedStat.workedTime % HOUR) / MIN);
-      setMinutes( min.toString() );
+      hr ? setTime(`${hr}ч ${min}м`) : setTime(`${min}м`);
     }
   }, [selectedStat]);
   
@@ -57,7 +57,7 @@ export function Time() {
         {selectedStat && (
           <React.Fragment>
             Вы работали над задачами в течение
-            <span className={styles.time}> {hours}ч {minutes}м</span>
+            <span className={styles.time}> {time}</span>
           </React.Fragment>
         )}
       </span>
