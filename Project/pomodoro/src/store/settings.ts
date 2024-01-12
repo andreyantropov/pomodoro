@@ -11,7 +11,7 @@ export interface SettingsEvents {
 }
 
 export const settingsModule: StoreonModule<SettingsState, SettingsEvents> = store => {
-    store.on('@init', () => ({ settings: { workTime: DEFAULT_WORK_TIME, shortBreak: DEFAULT_SHORT_BREAK_TIME, longBreak: DEFAULT_LONG_BREAK_TIME, additionalTime: DEFAULT_ADDITIONAL_TIME } }));
+    store.on('@init', () => ({ settings: { workTime: DEFAULT_WORK_TIME, shortBreak: DEFAULT_SHORT_BREAK_TIME, longBreak: DEFAULT_LONG_BREAK_TIME, additionalTime: DEFAULT_ADDITIONAL_TIME, theme: 'light' } }));
 
     store.on('settings/update', ({ settings }, newSettings) => {
         return { settings: newSettings };

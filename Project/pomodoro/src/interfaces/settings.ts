@@ -3,4 +3,5 @@ export interface Settings {
     shortBreak: number;
     longBreak: number;
     additionalTime: number;
+    theme: 'light' | 'dark';
 }

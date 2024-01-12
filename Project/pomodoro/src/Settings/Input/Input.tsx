@@ -4,7 +4,7 @@ import styles from './input.module.css';
 interface InputProps {
   label: string;
   id: string;
-  value: string;
+  value : string;
   type?: React.HTMLInputTypeAttribute;
   min?: number;
   max?: number;

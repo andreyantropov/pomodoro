@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { MIN } from '../constants/time';
 import { Input } from './Input';
 import { Buttons } from './Buttons';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Settings() {
   const { dispatch, settings } = useStoreon<State, Events>('settings');
@@ -14,6 +15,7 @@ export function Settings() {
   const [shortBreakTime, setShortBreakTime] = useState(settings.shortBreak / MIN);
   const [longBreakTime, setLongBreakTime] = useState(settings.longBreak / MIN);
   const [additionalTime, setAdditionalTime] = useState(settings.additionalTime / MIN);
+  const [theme, setTheme] = useState(settings.theme);
 
   function handleTomatoTimeChange(e: ChangeEvent<HTMLInputElement>) {
     setTomatoTime(Number(e.target.value));
@@ -31,9 +33,13 @@ export function Settings() {
     setAdditionalTime(Number(e.target.value));
   }
 
+  function handleThemeChange() {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  }
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('settings/update', { workTime: tomatoTime * MIN, shortBreak: shortBreakTime * MIN, longBreak: longBreakTime * MIN, additionalTime: additionalTime * MIN });
+    dispatch('settings/update', { workTime: tomatoTime * MIN, shortBreak: shortBreakTime * MIN, longBreak: longBreakTime * MIN, additionalTime: additionalTime * MIN, theme: theme });
     
     toast("Настройки успешно сохранены");
   }
@@ -43,7 +49,8 @@ export function Settings() {
     setShortBreakTime(5);
     setLongBreakTime(15);
     setAdditionalTime(1);
-    dispatch('settings/update', { workTime: 25 * MIN, shortBreak: 5 * MIN, longBreak: 15 * MIN, additionalTime: 1 * MIN });
+    setTheme('light');
+    dispatch('settings/update', { workTime: 25 * MIN, shortBreak: 5 * MIN, longBreak: 15 * MIN, additionalTime: 1 * MIN, theme: 'light' });
   }
 
   return (
@@ -55,6 +62,7 @@ export function Settings() {
             <Input label='Короткий перерыв (мин):' id='shortBreakTime' value={shortBreakTime.toString()} OnChange={handleshortBreakTimeChange} />
             <Input label='Длинный перерыв (мин):' id='longBreakTime' value={longBreakTime.toString()} OnChange={handleLongBreakTimeChange} />
             <Input label='Доп. время (мин):' id='additionalTime' value={additionalTime.toString()} OnChange={handleAdditionalTimeChange} />
+            <ThemeToggle checked={theme === 'dark'} OnChange={handleThemeChange} />
             <Buttons OnDefaultClick={handleDefault} />
           </form>
         </div>
