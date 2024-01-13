@@ -1,0 +1,124 @@
+.background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.dialog {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 48px;
+    max-width: 50%;
+    background-color: var(--white);
+}
+
+.closeBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.closeIcon {
+    fill: var(--grey-lighter);
+}
+
+.closeBtn:focus {
+    outline: 1px solid var(--black);
+}
+
+@media (any-hover: hover) {
+    .closeBtn:hover {
+        outline: none;
+    }
+
+    .closeBtn:hover .closeIcon {
+        fill: var(--primary);
+    }
+}
+
+.closeBtn:active {
+    outline: none;
+}
+
+.closeBtn:active .closeIcon {
+    fill: var(--primary-darker);
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 12px;
+    font-size: 24px;
+    line-height: 17px;
+}
+
+.message {
+    margin-bottom: 12px;
+}
+
+.okBtn {
+    margin-bottom: 10px;
+    padding: 15px 50px;
+    border: 2px solid var(--primary);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17px;
+    color: var(--white);
+    background-color: var(--primary);
+    transition: border 0.3s, color 0.3s, background-color 0.3s;
+}
+
+.okBtn:focus {
+    border: 2px solid var(--primary-darker);
+    outline: none;
+    color: var(--white);
+}
+
+@media (any-hover: hover) {
+    .okBtn:hover {
+        border: 2px solid var(--primary);
+        color: var(--white);
+        background-color: var(--primary);
+    }
+}
+
+.okBtn:active {
+    border: 2px solid var(--primary-darker);
+    color: var(--white);
+    background-color: var(--primary-darker);
+}
+
+.cancelBtn {
+    padding: 2px;
+    border-bottom: 1px solid var(--black);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 17px;
+    color: var(--black);
+    transition: border 0.3s, color 0.3s;
+}
+
+.cancelBtn:focus {
+    border-bottom: 2px solid var(--primary-darker);
+    color: var(--primary-darker);
+}
+
+@media (any-hover: hover) {
+    .cancelBtn:hover {
+        border-bottom: 1px solid var(--primary);
+        color: var(--primary);
+    }
+}
+
+.cancelBtn:active {
+    border-bottom: 1px solid var(--primary-darker);
+    color: var(--primary-darker);
+}

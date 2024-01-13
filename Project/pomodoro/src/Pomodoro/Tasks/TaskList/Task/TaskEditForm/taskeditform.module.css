@@ -1,0 +1,18 @@
+.input {
+    border: 1px solid var(--grey-light);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 17px;
+    background-color: var(--grey-light);
+}
+
+.input:disabled {
+    border: none;
+    background-color: transparent;
+    cursor: grab;
+}
+
+.input:focus:enabled {
+    outline: 2px solid var(--grey);
+}

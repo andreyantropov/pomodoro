@@ -1,0 +1,31 @@
+.menuComponent {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 15px;
+    background-color: var(--white);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.dropdownBtn {
+    padding: 0;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.dropdownBtn:focus {
+    border: 1px solid var(--grey-light);
+}
+
+@media (any-hover: hover) {
+    .dropdownBtn:hover {
+        background-color: var(--grey-light);
+    }
+}
+
+.dropdownBtn:active {
+    background-color: var(--grey-lighter);
+}
