@@ -1,0 +1,30 @@
+.item {
+    display: flex;
+    gap: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-size: 300;
+    color: var(--grey);
+    cursor: default;
+}
+
+.disabled {
+    opacity: 0.3;
+}
+
+.item:focus {
+    outline: 1px solid var(--grey-lighter);
+    background-color: var(--grey);
+}
+
+@media (any-hover: hover) {
+    .item:hover {
+        outline: none;
+        background-color: var(--grey-light);
+    }
+}
+
+.item:active {
+    outline: none;
+    background-color: var(--grey-lighter);
+}

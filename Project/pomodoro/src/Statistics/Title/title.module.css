@@ -1,0 +1,12 @@
+.titleComponent {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 33px;
+}

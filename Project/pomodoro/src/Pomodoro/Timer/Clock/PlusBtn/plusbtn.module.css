@@ -1,0 +1,18 @@
+.plusIcon {
+    fill: var(--grey-lighter);
+    transition: fill 0.3s;
+}
+
+.btn:focus .plusIcon {
+    fill: var(--secondary-light);
+}
+
+@media (any-hover: hover) {
+    .btn:hover .plusIcon {
+        fill: var(--secondary-darker);
+    }
+}
+
+.btn:active .plusIcon {
+    fill: var(--secondary-dark);
+}

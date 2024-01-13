@@ -1,0 +1,37 @@
+.statistics {
+    animation: fadeInDown 1s;
+}
+
+@keyframes fadeInDown {
+    0% {
+       opacity: 0;
+       transform: translateY(-20px);
+    }
+    100% {
+       opacity: 1;
+       transform: translateY(0);
+    }
+} 
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1320px;
+}
+
+.wrapper {
+    padding-bottom: 50px;
+}
+
+.statistics {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+
+.mainStats {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 320px;
+}
