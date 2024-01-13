@@ -14,7 +14,7 @@ export function Clock() {
   const { dispatch, timer, stats, settings } = useStoreon<State, Events>('timer', 'stats', 'settings');
   const [minutes, setMinutes] = useState((settings.workTime / MIN).toString());
   const [seconds, setSeconds] = useState('00');
-  const [ currentStat ] = useCurrentStat();
+  const [currentStat] = useCurrentStat();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;

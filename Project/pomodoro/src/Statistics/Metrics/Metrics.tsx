@@ -8,7 +8,7 @@ import { Metric } from '../../interfaces/metric';
 import { HOUR, MIN, SEC } from '../../constants/time';
 
 export function Metrics() {
-  const [ selectedStat ] = useSelectedStat();
+  const [selectedStat] = useSelectedStat();
   
   const focus = calcFocus();
   const pausedTime = calcPausedTime();

@@ -5,7 +5,7 @@ import { Statistic } from "../interfaces/statistic";
 
 export function useWeekStat() {
     const { stats, selectedWeek } = useStoreon<State, Events>('stats', 'selectedWeek');
-    const [ weekStat, setWeekStat ] = useState( getWeeklyStatistics(stats, selectedWeek) );
+    const [weekStat, setWeekStat] = useState( getWeeklyStatistics(stats, selectedWeek) );
 
     useEffect(() => {
         setWeekStat( getWeeklyStatistics(stats, selectedWeek) );

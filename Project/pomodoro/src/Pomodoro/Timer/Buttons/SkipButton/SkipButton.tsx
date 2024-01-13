@@ -8,7 +8,7 @@ import { State, Events } from '../../../../store/store';
 
 export function SkipButton() {
   const { dispatch, timer, settings } = useStoreon<State, Events>('timer', 'settings');
-  const [ currentTask ] = useCurrentTask();
+  const [currentTask] = useCurrentTask();
 
   function handleSkipClick() {
     dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.workTime, tomatoes: ++timer.tomatoes});

@@ -7,7 +7,7 @@ import { State, Events } from '../../../../store/store';
 
 export function StopButton() {
   const { dispatch, timer, settings } = useStoreon<State, Events>('timer', 'settings');
-  const [ disabled, setDisabled ] = useState(timer.status === TimerStatus.Stop);
+  const [disabled, setDisabled] = useState(timer.status === TimerStatus.Stop);
 
   function handleStopClick() {
     dispatch('timer/update', {...timer, status: TimerStatus.Stop, time: settings.workTime});

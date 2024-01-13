@@ -7,7 +7,7 @@ import { useStoreon } from 'storeon/react';
 import { State, Events } from '../../store/store';
 
 export function Time() {
-  const [ selectedStat ] = useSelectedStat();
+  const [selectedStat] = useSelectedStat();
   const { selectedDate } = useStoreon<State, Events>('selectedDate');
   const [weekDay, setWeekDay] = useState('Воскресенье');
   const [time, setTime] = useState('Нет данных');

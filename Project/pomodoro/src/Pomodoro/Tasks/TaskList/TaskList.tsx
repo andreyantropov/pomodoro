@@ -8,7 +8,7 @@ import { Reorder } from 'framer-motion';
 
 export function TaskList() {
   const { dispatch, tasks } = useStoreon<State, Events>('tasks');
-  const [ currentStat ] = useCurrentStat();
+  const [currentStat] = useCurrentStat();
 
   useEffect(() => {
     let plannedTomatoes = 0;

@@ -3,7 +3,7 @@ import styles from './tomato.module.css';
 import { useSelectedStat } from '../../hooks/useSelectedStat';
 
 export function Tomato() {
-  const [ selectedStat ] = useSelectedStat();
+  const [selectedStat] = useSelectedStat();
 
   return (
     <div className={styles.tomatoComponent}>

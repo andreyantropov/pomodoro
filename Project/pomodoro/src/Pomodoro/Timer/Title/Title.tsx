@@ -8,7 +8,7 @@ import { TimerStatus } from '../../../enums/TimerStatus';
 
 export function Title() {
   const { timer } = useStoreon<State, Events>('timer');
-  const [ currentTask ] = useCurrentTask();
+  const [currentTask] = useCurrentTask();
   
   const titleContainerClasses = classNames(
     styles.titleContainer,

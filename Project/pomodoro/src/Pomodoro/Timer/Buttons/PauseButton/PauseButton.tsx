@@ -8,7 +8,7 @@ import { State, Events } from '../../../../store/store';
 
 export function PauseButton() {
   const { dispatch, timer } = useStoreon<State, Events>('timer');
-  const [ currentStat ] = useCurrentStat();
+  const [currentStat] = useCurrentStat();
 
   function handlePauseClick() {
     if (timer.status === TimerStatus.InProgress) {

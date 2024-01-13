@@ -8,7 +8,7 @@ import { State, Events } from '../../../../store/store';
 
 export function DoneButton() {
   const { dispatch, timer, settings } = useStoreon<State, Events>('timer', 'settings');
-  const [ currentStat ] = useCurrentStat();
+  const [currentStat] = useCurrentStat();
 
   function handleDoneClick() {
     if (timer.tomatoes % 4) {

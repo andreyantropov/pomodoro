@@ -28,7 +28,7 @@ const labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
 export function Plot() {
   const { dispatch } = useStoreon<State, Events>();
-  const [ weekStat ] = useWeekStat();
+  const [weekStat] = useWeekStat();
   const [maxTomatoes, setMaxTomatoes] = useState(0);
   const ref = useRef();
 

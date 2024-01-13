@@ -3,7 +3,7 @@ import styles from './task.module.css';
 import { useCurrentTask } from '../../../hooks/useCurrentTask';
 
 export function Task() {
-  const [ currentTask ] = useCurrentTask();
+  const [currentTask] = useCurrentTask();
   
   return (
     <div className={styles.taskContainer}>
