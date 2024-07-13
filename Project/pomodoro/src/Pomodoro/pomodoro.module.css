@@ -1,0 +1,34 @@
+.pomodoro {
+    animation: fadeInDown 1s;
+}
+
+@keyframes fadeInDown {
+    0% {
+       opacity: 0;
+       transform: translateY(-20px);
+    }
+    100% {
+       opacity: 1;
+       transform: translateY(0);
+    }
+} 
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1320px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 50px;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 500px;
+    width: 100%;
+}
