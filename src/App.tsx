@@ -18,8 +18,8 @@ function App() {
           <Header />
           <main>
             <Routes>
-              <Route path='/' element={<Navigate replace to="/tasks" />} />
-              <Route path="/tasks" element={<Pomodoro />} />
+              <Route path='/' element={<Navigate replace to="/pomodoro" />} />
+              <Route path="/pomodoro" element={<Pomodoro />} />
               <Route path="/statistics" element={<Statistics />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<PageNotFound />} />

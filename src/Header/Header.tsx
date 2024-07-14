@@ -8,7 +8,7 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <Link to="tasks" >
+          <Link to="pomodoro" >
             <img src="/img/logo.svg" alt="Логотип Pomodoro" />
           </Link>
 
