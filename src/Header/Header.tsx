@@ -9,7 +9,7 @@ export function Header() {
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <Link to="pomodoro" >
-            <img src="/img/logo.svg" alt="Логотип Pomodoro" />
+            <img src="/pomodoro/img/logo.svg" alt="Логотип Pomodoro" />
           </Link>
 
           <Navigation />

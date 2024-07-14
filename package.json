@@ -1,6 +1,7 @@
 {
   "name": "pomodoro",
   "version": "0.1.0",
+  "homepage": "https://andreyantropov.github.io/pomodoro/",
   "private": true,
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
@@ -28,6 +29,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
