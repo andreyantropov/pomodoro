@@ -1,9 +1,0 @@
-.btnContainer {
-    display: flex;
-    gap: 25px;
-}
-
-.btn {
-    padding: 15px 40px;
-    width: calc((100% - 25px) / 2);
-}

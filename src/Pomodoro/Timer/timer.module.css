@@ -1,9 +1,0 @@
-.timerComponent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: flex-start;
-    padding-bottom: 100px;
-    width: 100%;
-    background-color: var(--grey-light);
-}
