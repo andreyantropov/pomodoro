@@ -31,7 +31,7 @@ export function TaskEditFormContainer({ task }: TakeEditFormContainer) {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    dispatch('tasks/update', { ...task, text: value, isEdit: false });
+    dispatch('tasks/update', { ...task, text: value.trim(), isEdit: false });
   }
 
   return (
